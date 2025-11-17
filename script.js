@@ -49,12 +49,13 @@ btn_envoyer.onclick = (e) => {
 
     //validation de url
 }
-///formulaire dynamique ***********************************
 
-let experiences = document.getElementById("Experiences");
+
+///formulaire dynamique ***********************************
 let ExperiencesContainer = getElementById("ExperiencesContainer");
-experiences.addEventListener('click', (e) => {
-    ExperiencesContainer.innerHTML = "";
+let btnPlus = document.getElementById("btn_plus");
+btnPlus.addEventListener('click',function (e){
+        ExperiencesContainer.innerHTML = "";
     const experience = document.createElement("input");
     experience.className = "border border-solide-balck rounded px-5";
     experience.id = `Experiences-${experiences.id}`;
@@ -64,4 +65,28 @@ experiences.addEventListener('click', (e) => {
 let ajouterEmploye = document.getElementById("ajouterEmploye");
 ajouterEmploye.addEventListener('click',(e)=>{
     formulaire.style.display = 'block';
+});
+//afficher les employee
+let afficherEmployees = document.getElementById("afficherEmployees");
+afficherEmployees.addEventListener('click',(e)=>{
 })
+
+
+
+
+
+
+
+//   document.addEventListener('click', function (e) {
+//             if (e.target.classList.contains('clone-btn')) {
+//                 const row = e.target.closest('.clonable-row');
+//                 const newRow = row.cloneNode(true);
+//                 newRow.querySelector('input').value = '';
+//                 newRow.querySelector('button').textContent = '-';
+//                 newRow.querySelector('button').className = 'remove-btn';
+//                 row.parentNode.appendChild(newRow);
+//             }
+//             else if (e.target.classList.contains('remove-btn')) {
+//                 e.target.closest('.clonable-row').remove();
+//             }
+//         });
