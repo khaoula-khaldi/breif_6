@@ -30,13 +30,13 @@ btn_envoyer.onclick = (e) => {
     }
 
 
-    // validation ta3 telephone
-    const telephoneRegex = /^\(+212|0)(6|7|5)[0-9]{9}$/;
+    // // validation ta3 telephone
+    // const telephoneRegex = /^\(+212|0)(6|7|5)[0-9]{9}$/;
 
-    if(!teleohoneRegex.test(telephone)){
-        alert("telephone incorrect !");
-        return;
-    }
+    // if(!teleohoneRegex.test(telephone)){
+    //     alert("telephone incorrect !");
+    //     return;
+    // }
 
     // //validation ta3 experience
     // const experiencesRegex = /^[a-zA-Z]+$/;
@@ -56,19 +56,27 @@ let ExperiencesContainer = getElementById("ExperiencesContainer");
 let btnPlus = document.getElementById("btn_plus");
 btnPlus.addEventListener('click',function (e){
         ExperiencesContainer.innerHTML = "";
-    const experience = document.createElement("input");
-    experience.className = "border border-solide-balck rounded px-5";
-    experience.id = `Experiences-${experiences.id}`;
-    ExperiencesContainer.appendChild(experiences);
+    const experiencePLUS = document.createElement("input");
+    experiencePLUS.className = "border border-solide-balck rounded px-5";
+    experiencePLUS.id = `Experiences-${experiencesPLUS.id}`;
+    ExperiencesContainer.appendChild(experiencesPLUS);
 })
 //ajouter un employe
-let ajouterEmploye = document.getElementById("ajouterEmploye");
+let ajouterEmploye = document.getElementById('ajouterEmploye');
 ajouterEmploye.addEventListener('click',(e)=>{
     formulaire.style.display = 'block';
 });
 //afficher les employee
 let afficherEmployees = document.getElementById("afficherEmployees");
 afficherEmployees.addEventListener('click',(e)=>{
+
+})
+//AJOUTER un employe dans un chambre 
+let btn_ajoute = document.getElementById("btn_ajoute");
+btn_ajoute . addEventListener ('click',(e)=>{
+    let employe = document.createElement("section");
+    
+
 })
 
 
