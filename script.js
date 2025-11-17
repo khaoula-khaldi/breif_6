@@ -30,25 +30,26 @@ btn_envoyer.onclick = (e) => {
     }
 
 
-    // // validation ta3 telephone
-    // const teleohoneRegex = /^\(+212|0)(6|7|5)[0-9]{9}$/;
+    // validation ta3 telephone
+    const telephoneRegex = /^\(+212|0)(6|7|5)[0-9]{9}$/;
 
-    // if(!teleohoneRegex.test(telephone)){
-    //     alert("telephone incorrect !");
+    if(!teleohoneRegex.test(telephone)){
+        alert("telephone incorrect !");
+        return;
+    }
+
+    // //validation ta3 experience
+    // const experiencesRegex = /^[a-zA-Z]+$/;
+
+    // if (!experiencesRegex.test(experiences)) {
+    //     alert("remplire une vrai experience !");
     //     return;
     // }
 
 
-    //validation ta3 experience
-    const experiencesRegex = /^[a-zA-Z]+$/;
-
-    if (!experiencesRegex.test(experiences)) {
-        alert("remplire une vrai experience !");
-        return;
-    }
     //validation de url
 }
-///tableau dans local storeg qui stokes les info les employer
+///formulaire dynamique ***********************************
 
 let experiences = document.getElementById("Experiences");
 let ExperiencesContainer = getElementById("ExperiencesContainer");
@@ -58,4 +59,9 @@ experiences.addEventListener('click', (e) => {
     experience.className = "border border-solide-balck rounded px-5";
     experience.id = `Experiences-${experiences.id}`;
     ExperiencesContainer.appendChild(experiences);
+})
+//ajouter un employe
+let ajouterEmploye = document.getElementById("ajouterEmploye");
+ajouterEmploye.addEventListener('click',(e)=>{
+    formulaire.style.display = 'block';
 })
