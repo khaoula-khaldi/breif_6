@@ -23,12 +23,10 @@ btn_envoyer.onclick = (e) => {
     } 
     // validation ta3 email
     const emailRegex = /^[A-Za-z1_10]+@+email.com+$/;
-    if(!emailRegex.test(email)) {d
+    if(!emailRegex.test(email)) {
         alert("Email incorrect ");
         return;
-    } else {
-        alert("Email correct ");
-    }
+    } 
 
    
 }
