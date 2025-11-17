@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="index.css" rel="stylesheet">
+
+</head>
+<style>
+    .card {
+        background-image: url(image.breif6.jpg);
+        background-repeat: no-repeat;
+        height: 100vh;
+    }
+
+    #formulaire {
+        display: block;
+    }
+</style>
+
+<body class="m-10 bg-gray-200">
+
+    <div class="flex flex-col md:grid md:grid-cols-[1fr_3fr]">
+
+        <div id="cotes_employé" class="m-5">
+            <div >
+                <button class="bg-green-400  px-20 py-2 mb-5 rounded-xl"> + Ajouter un employé</button>
+                <button class="bg-orange-400  px-20 py-2 mb-5 rounded-xl"> Afficher les employés</button>
+            </div>
+            <form id="formulaire" class="border border-solide-balck bg-white">
+                <div class="m-5">
+                    <h1 class="text-lg font-semibold flex justify-center overflow-y-auto ">profil d'employé</h1>
+                    <div class="flex flex-col">
+                        <div>
+                            <label class="font-semibold">Photo :</label><br>
+
+                            <!-- zone preview -->
+                            <div id="container_photo"
+                                class="w-20 h-20 rounded overflow-hidden bg-gray-50 flex items-center justify-center border">
+                                <span id="text_container_photo" class="text-xs text-gray-400">No image</span>
+                            </div>
+                            <span></span>
+                        </div>
+                        <br><br>
+                        <div>
+                            <label class="font-semibold">Nom :</label><br>
+                            <input id="nome" class="border border-solide-balck rounded px-5 " data-type="username"
+                                type="text" placeholder="username">
+                            <span></span>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="font-semibold">Email :</label><br>
+                            <input id="email" class="border border-solide-balck rounded px-5 " data-type="email"
+                                type="text" placeholder="you@example.com">
+                            <span></span>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="font-semibold">Télephone :</label><br>
+                            <input id="telephone" class="border border-solide-balck rounded px-5 " data-type="tele"
+                                type="text" placeholder="+212 6/7xx xxx xxx">
+                            <span></span>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="font-semibold">Role :</label><br>
+                            <select id="role" class="border border-solide-balck bg-gray-30">
+                                <option> </option>
+                                <option>Réception</option>
+                                <option>Salle des serveurs </option>
+                                <option>Salle de sécurité</option>
+                                <option>Manager </option>
+                                <option>Nettoyage </option>
+                                <option>Autres rôles </option>
+                            </select>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="font-semibold">Expériences professionnelles :</label><br>
+                            <div class="flex flex-row gap-2">
+                                <input id="Experiences" class="border border-solide-balck rounded px-5" data-type="text"
+                                    type="text" placeholder="Expériences professionnelles">
+                                <span></span>
+                                <button id="btn_plus"
+                                    class="bg-green-400 border border-solide-balck rounded-2xl w-10 p-2">+</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="btn_envoyer">
+                            <button class="border border-solide-balck rounded bg-green-400 p-1">Envoyer</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <div
+            class="card grid grid-cols-[2fr_1fr_2fr_1fr_1fr] grid-row-[1fr-1fr-1fr] gap-1 bg-contain md:bg-cover bg-top bg-no-repeat ">
+            <div class="text-balck col-start-1 flex items-center justify-center  bg-red-500 ">📊"Salle de conférence
+                <button id="btn_ajoute" class="bg-blue-700 p-1 rounded-2xl w-10 ml-3 text-white">+</button>
+            </div>
+            <div class="text-white col-start-4  flex items-center justify-center bg-red-500  ">🔒 Salle de sécurité
+                <button id="btn_ajoute" class="bg-blue-700 p-1 rounded-2xl w-10 ml-3">+</button>
+            </div>
+            <div class="text-white col-start-5 flex items-center justify-center bg-red-500 ">🖥️ Salle des serveurs
+                <button id="btn_ajoute" class="bg-blue-700 p-1 rounded-2xl w-10 ml-3">+</button>
+            </div>
+            <div class="text-white row-span-2 w-[24rem]  flex items-center  justify-center bg-red-500 ">🛎️ Réception
+                <button id="btn_ajoute" class="bg-blue-700 p-1 rounded-2xl w-10 ml-3">+</button>
+            </div>
+            <div class="text-white col-start-4 w-[17rem] mt-10 row-start-3  flex items-center  justify-center bg-red-500 ">👥
+                Salle du personnel
+                <button id="btn_ajoute" class="bg-blue-700 p-1 rounded-2xl w-10 ml-3">+</button>
+            </div>
+            <div class="text-white col-start-5 row-start-3 w-[12rem] mt-10 flex items-center  justify-center bg-red-500 ">📁
+                d’archives
+                <button id="btn_ajoute" class="bg-blue-700 p-1 rounded-2xl ml-4 w-10">+</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>
