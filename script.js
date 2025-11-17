@@ -20,16 +20,16 @@ btn_envoyer.onclick = (e) => {
     if (!nomRegex.test(nom)) {
         alert("Nom incorrect !");
         return;
-    } 
+    }
     // validation ta3 email
     const emailRegex = /^[a-zA-Z]+[0-9]+@+gmail.com+$/;
 
-    if(!emailRegex.test(email)) {
+    if (!emailRegex.test(email)) {
         alert("Email incorrect !");
         return;
     }
-    
-    
+
+
     // // validation ta3 telephone
     // const teleohoneRegex = /^\(+212|0)(6|7|5)[0-9]{9}$/;
 
@@ -40,14 +40,22 @@ btn_envoyer.onclick = (e) => {
 
 
     //validation ta3 experience
-    const experiencesRegex =/^[a-zA-Z]+$/;
+    const experiencesRegex = /^[a-zA-Z]+$/;
 
-    if(!experiencesRegex.test(experiences)){
-         alert("remplire une vrai experience !");
+    if (!experiencesRegex.test(experiences)) {
+        alert("remplire une vrai experience !");
         return;
     }
     //validation de url
 }
 ///tableau dans local storeg qui stokes les info les employer
 
-
+let experiences = document.getElementById("Experiences");
+let ExperiencesContainer = getElementById("ExperiencesContainer");
+experiences.addEventListener('click', (e) => {
+    ExperiencesContainer.innerHTML = "";
+    const experience = document.createElement("input");
+    experience.className = "border border-solide-balck rounded px-5";
+    experience.id = `Experiences-${experiences.id}`;
+    ExperiencesContainer.appendChild(experiences);
+})
