@@ -68,6 +68,7 @@ btnPlus.addEventListener('click', function () {
     experienceInput.placeholder = "Ajouter autre expérience";
     experienceInput.name = "experience";
     ExperiencesContainer.appendChild(experienceInput);
+
 });
 
 //ajouter un employe
@@ -102,15 +103,35 @@ afficherEmployees.addEventListener('click', (e) => {
         divVide.style.display = 'none';
     })
 });
-// }
-// //AJOUTER un employe dans un chambre
-// let btn_ajoute = document.getElementById("btn_ajoute");
-// btn_ajoute . addEventListener ('click',(e)=>{
-//     let divEpmloyeChambre = document.createElement("div");
-//         divEpmloyeChambre.className=" border border-solide border-black rounded p-2 bg-white w-[20rem] z-index-10";
-//     divEpmloyeChambre.name="divEpmloyeChambre";
-//    sectionImage.appendChild(divEpmloyeChambre);
-// })
+
+//AJOUTER un employe dans un chambre
+let sectionImage = document.getElementById("sectionImage");
+let btn_ajoute = document.querySelectorAll(".btn_ajoute");
+btn_ajoute.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        let divEpmloyeChambre = document.createElement("div");
+        divEpmloyeChambre.className = "absolute border border-solid border-black rounded p-2 bg-white w-[20rem] z-50";
+        divEpmloyeChambre.name = "divEpmloyeChambre";
+        sectionImage.appendChild(divEpmloyeChambre);
+        let utilisateurs = JSON.parse(localStorage.getItem("utilisateur")) || [];
+        const divVide = document.createElement("div");
+        divVide.className = "p-2 bg-white border rounded";
+        utilisateurs.forEach((user, index) => {
+            const divEmploye = document.createElement("div");
+            divEmploye.className = "border border-black rounded-2xl p-2 bg-white w-[15rem] mb-2";
+            divEmploye.innerHTML = `
+            <strong>Employé ${index + 1}</strong><br>
+            photo:${user.URL}<br>
+            Nom: ${user.nom}<br>
+            role:${user.role}    
+        `;
+            divEpmloyeChambre.appendChild(divEmploye);
+            divEpmloyeChambre.style.displa = "block";
+           
+            });
+        })
+    })
+
 
 
 // utilisateur.forEache(()=>{
