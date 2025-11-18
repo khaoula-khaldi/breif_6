@@ -9,9 +9,11 @@ btn_envoyer.onclick = (e) => {
     let email = document.getElementById("email").value.trim();
     let telephone = document.getElementById("telephone").value.trim();
     let experiences = document.getElementById("Experiences").value.trim();
+    let role = document.getElementById("role").value.trim();
+
 
     // wash dook les input khaween
-    if (nom === "" || email === "" || telephone === "" || experiences === "") {
+    if (nom === "" || email === "" || telephone === "" || experiences === "" || role === "") {
         alert("Remplir tous les champs !!");
         return;
     }
@@ -29,7 +31,6 @@ btn_envoyer.onclick = (e) => {
         alert("Email incorrect !");
         return;
     }
-
 
     // validation ta3 telephone
     const telephoneRegex = /^\+212[0-9]{9}$/;
@@ -76,39 +77,47 @@ ajouterEmploye.addEventListener('click', (e) => {
 });
 
 
-// afficher les employee
-const cotes_employe = document.getElementById("cotes_employe");
-let afficherEmployees = document.getElementById("afficherEmployees");
-afficherEmployees.addEventListener('click',(e)=>{
-    const divEmploye=document.createElement("div");
-    divEmploye.className=" border border-solide border-black rounded p-2 bg-white w-[20rem] z-index-10";
-    divEmploye.name="divEmploye";
-   cotes_employe.appendChild(divEmploye);
 
-   utilisateur=JSON.parse(localStorage.getItem("utilisateur"))||[];
-   if(utilisateur.length===0){
-    divEmploye.textContent="Aucun employé trouvé";
-   }
-   return;
-})
+afficherEmployees.addEventListener('click', (e) => {
+    let utilisateurs = JSON.parse(localStorage.getItem("utilisateur")) || [];
+    const divVide = document.createElement("div");
+    if (utilisateur.length === 0) {
+        divVide.textContent = "Aucun employé trouvé";
+        return;
+    }
+
+    divVide.className = "p-2 bg-white border rounded";
+    cotes_employe.appendChild(divVide);
+    utilisateurs.forEach((user, index) => {
+        const divEmploye = document.createElement("div");
+        divEmploye.className = "border border-black rounded-2xl p-2 bg-white w-[20rem] mb-2";
+        divEmploye.innerHTML = `
+            <strong>Employé ${index + 1}</strong><br>
+            Nom: ${user.nom}<br>
+            Email: ${user.email}<br>
+            role:${user.role}
+        `;
+        cotes_employe.appendChild(divEmploye);
+    });
+});
+
+
+
+// //AJOUTER un employe dans un chambre
+// let btn_ajoute = document.getElementById("btn_ajoute");
+// btn_ajoute . addEventListener ('click',(e)=>{
+//     let divEpmloyeChambre = document.createElement("div");
+//         divEpmloyeChambre.className=" border border-solide border-black rounded p-2 bg-white w-[20rem] z-index-10";
+//     divEpmloyeChambre.name="divEpmloyeChambre";
+//    sectionImage.appendChild(divEpmloyeChambre);
+// })
 // utilisateur.forEache(()=>{
 //     let div = document.createElement("div");
 //     div.className="p-4 border rounded shadow bg-gray-50";
 
-
-
 // })
 
 
-
-//AJOUTER un employe dans un chambre
-let btn_ajoute = document.getElementById("btn_ajoute");
-btn_ajoute . addEventListener ('click',(e)=>{
-    let divEpmloyeChambre = document.createElement("div");
-        divEpmloyeChambre.className=" border border-solide border-black rounded p-2 bg-white w-[20rem] z-index-10";
-    divEpmloyeChambre.name="divEpmloyeChambre";
-   sectionImage.appendChild(divEpmloyeChambre);
-})
 
 // const objetInfo = { nom, email, telephone, experiences, experienceInput };
 // utilisateur.push(objetInfo);
