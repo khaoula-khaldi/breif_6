@@ -96,10 +96,10 @@ afficherEmployees.addEventListener('click', (e) => {
     const effacer = document.createElement("button");
     effacer.className = "p-2 bg-red-700 w-20 h-10 border rounded-3xl text-white ";
     effacer.type = "button"
-    effacer.textContent = "fermet"
+    effacer.textContent = "fermer"
     divVide.appendChild(effacer);
     effacer.addEventListener('click', (e) => {
-        divVide.style.displa = 'none';
+        divVide.style.display = 'none';
     })
 });
 // }
