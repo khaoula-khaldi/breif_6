@@ -63,11 +63,11 @@ btnPlus.addEventListener('click', function () {
     ExperiencesContainer.appendChild(experiencePLUS);
 });
 
-// //ajouter un employe
-// let ajouterEmploye = document.getElementById('ajouterEmploye');
-// ajouterEmploye.addEventListener('click',(e)=>{
-//     formulaire.style.display = 'block';
-// });
+//ajouter un employe
+let ajouterEmploye = document.getElementById('ajouterEmploye');
+ajouterEmploye.addEventListener('click',(e)=>{
+    formulaire.style.display = 'block';
+});
 // //afficher les employee
 // let afficherEmployees = document.getElementById("afficherEmployees");
 // afficherEmployees.addEventListener('click',(e)=>{
