@@ -88,7 +88,7 @@ ajouterEmploye.addEventListener('click',(e)=>{
 //     let employe = document.createElement("section");
 // })
 
-
+let utilisateur = JSON.parse(localStorage.getItem("utilisateur")) || [];
 
 
 
