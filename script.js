@@ -76,16 +76,9 @@ ajouterEmploye.addEventListener('click', (e) => {
     formulaire.style.display = 'block';
 });
 
-
-
 afficherEmployees.addEventListener('click', (e) => {
     let utilisateurs = JSON.parse(localStorage.getItem("utilisateur")) || [];
     const divVide = document.createElement("div");
-    if (utilisateur.length === 0) {
-        divVide.textContent = "Aucun employé trouvé";
-        return;
-    }
-
     divVide.className = "p-2 bg-white border rounded";
     cotes_employe.appendChild(divVide);
     utilisateurs.forEach((user, index) => {
@@ -93,16 +86,23 @@ afficherEmployees.addEventListener('click', (e) => {
         divEmploye.className = "border border-black rounded-2xl p-2 bg-white w-[20rem] mb-2";
         divEmploye.innerHTML = `
             <strong>Employé ${index + 1}</strong><br>
+            photo:${user.URL}<br>
             Nom: ${user.nom}<br>
-            Email: ${user.email}<br>
-            role:${user.role}
+            role:${user.role}    
         `;
-        cotes_employe.appendChild(divEmploye);
+        divVide.appendChild(divEmploye);
+        divVide.style.displa = "block";
     });
+    const effacer = document.createElement("button");
+    effacer.className = "p-2 bg-red-700 w-20 h-10 border rounded-3xl text-white ";
+    effacer.type = "button"
+    effacer.textContent = "fermet"
+    divVide.appendChild(effacer);
+    effacer.addEventListener('click', (e) => {
+        divVide.style.displa = 'none';
+    })
 });
-
-
-
+// }
 // //AJOUTER un employe dans un chambre
 // let btn_ajoute = document.getElementById("btn_ajoute");
 // btn_ajoute . addEventListener ('click',(e)=>{
@@ -111,6 +111,8 @@ afficherEmployees.addEventListener('click', (e) => {
 //     divEpmloyeChambre.name="divEpmloyeChambre";
 //    sectionImage.appendChild(divEpmloyeChambre);
 // })
+
+
 // utilisateur.forEache(()=>{
 //     let div = document.createElement("div");
 //     div.className="p-4 border rounded shadow bg-gray-50";
