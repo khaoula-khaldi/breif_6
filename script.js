@@ -84,39 +84,31 @@ afficherEmployees.addEventListener('click',(e)=>{
     divEmploye.className=" border border-solide border-black rounded p-2 bg-white w-[20rem] z-index-10";
     divEmploye.name="divEmploye";
    cotes_employe.appendChild(divEmploye);
-   
+
    utilisateur=JSON.parse(localStorage.getItem("utilisateur"))||[];
    if(utilisateur.length===0){
     divEmploye.textContent="Aucun employé trouvé";
    }
    return;
 })
-utilisateur.forEache(()=>{
-    let div = document.createElement("div");
-    div.className="p-4 border rounded shadow bg-gray-50";
-
-            div.innerHTML = `
-            <strong>Employé ${index + 1}</strong><br>
-            Nom: ${user.nom}<br>
-            Email: ${user.email}<br>
-            Téléphone: ${user.telephone || 'N/A'}<br>
-            Expériences: ${user.experiences || 'N/A'}
-        `;
-    divEmploye.appendChild(div);
-
-})
+// utilisateur.forEache(()=>{
+//     let div = document.createElement("div");
+//     div.className="p-4 border rounded shadow bg-gray-50";
 
 
 
-
-
-
-
-// //AJOUTER un employe dans un chambre
-// let btn_ajoute = document.getElementById("btn_ajoute");
-// btn_ajoute . addEventListener ('click',(e)=>{
-//     let employe = document.createElement("section");
 // })
+
+
+
+//AJOUTER un employe dans un chambre
+let btn_ajoute = document.getElementById("btn_ajoute");
+btn_ajoute . addEventListener ('click',(e)=>{
+    let divEpmloyeChambre = document.createElement("div");
+        divEpmloyeChambre.className=" border border-solide border-black rounded p-2 bg-white w-[20rem] z-index-10";
+    divEpmloyeChambre.name="divEpmloyeChambre";
+   sectionImage.appendChild(divEpmloyeChambre);
+})
 
 // const objetInfo = { nom, email, telephone, experiences, experienceInput };
 // utilisateur.push(objetInfo);
