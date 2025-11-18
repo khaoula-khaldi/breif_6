@@ -7,10 +7,11 @@ btn_envoyer.onclick = (e) => {
     let email = document.getElementById("email").value.trim();
     let telephone = document.getElementById("telephone").value.trim();
     let experiences = document.getElementById("Experiences").value.trim();
+     experiencePLUS=document.getElementById("experiencePLUS").value.trim();
 
 
     // wash dook les input khaween
-    if (nom === "" || email === "" || telephone === "" || experiences === "") {
+    if (nom === "" || email === "" || telephone === "" || experiences === "" || experiencePLUS==="") {
         alert("Remplir tous les champs !!");
         return;
     }
@@ -45,6 +46,12 @@ btn_envoyer.onclick = (e) => {
         alert("remplire une vrai experience !");
         return;
     }
+        const experiencePLUS = /^[a-zA-Z]+$/;
+
+    if (!experiencePLUSRegex.test(experiencePLUS)) {
+        alert("remplire une vrai experience !");
+        return;
+    }
 
 
     //validation de url
@@ -58,6 +65,7 @@ btnPlus.addEventListener('click', function () {
     
     const experiencePLUS = document.createElement("input");
     experiencePLUS.className = "border border-solide-balck rounded px-5 py-2";
+    input.id = "experiencePLUS";
     experiencePLUS.placeholder = "Ajouter autre expérience";
 
     ExperiencesContainer.appendChild(experiencePLUS);
@@ -71,14 +79,13 @@ ajouterEmploye.addEventListener('click',(e)=>{
 // //afficher les employee
 // let afficherEmployees = document.getElementById("afficherEmployees");
 // afficherEmployees.addEventListener('click',(e)=>{
-
 // })
+
+
 // //AJOUTER un employe dans un chambre 
 // let btn_ajoute = document.getElementById("btn_ajoute");
 // btn_ajoute . addEventListener ('click',(e)=>{
 //     let employe = document.createElement("section");
-
-
 // })
 
 
