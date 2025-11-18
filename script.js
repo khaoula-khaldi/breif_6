@@ -74,10 +74,13 @@ let ajouterEmploye = document.getElementById('ajouterEmploye');
 ajouterEmploye.addEventListener('click', (e) => {
     formulaire.style.display = 'block';
 });
-// //afficher les employee
-// let afficherEmployees = document.getElementById("afficherEmployees");
-// afficherEmployees.addEventListener('click',(e)=>{
-// })
+//afficher les employee
+let afficherEmployees = document.getElementById("afficherEmployees");
+afficherEmployees.addEventListener('click',(e)=>{
+    const sectionEmploye=document.createElement("section");
+    sectionEmploye.className=" border border-solide border-black rounded p-2 bg-white w-[16rem] h-[16rem] ";
+   
+})
 
 
 // //AJOUTER un employe dans un chambre
