@@ -9,8 +9,7 @@ btn_envoyer.onclick = (e) => {
     let email = document.getElementById("email").value.trim();
     let telephone = document.getElementById("telephone").value.trim();
     let experiences = document.getElementById("Experiences").value.trim();
-   experienceInput= document.getElementsByName("experience").value.trim();
- 
+
     // wash dook les input khaween
     if (nom === "" || email === "" || telephone === "" || experiences === "") {
         alert("Remplir tous les champs !!");
