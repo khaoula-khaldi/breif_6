@@ -74,13 +74,42 @@ let ajouterEmploye = document.getElementById('ajouterEmploye');
 ajouterEmploye.addEventListener('click', (e) => {
     formulaire.style.display = 'block';
 });
-//afficher les employee
+
+
+// afficher les employee
+const cotes_employe = document.getElementById("cotes_employe");
 let afficherEmployees = document.getElementById("afficherEmployees");
 afficherEmployees.addEventListener('click',(e)=>{
-    const sectionEmploye=document.createElement("section");
-    sectionEmploye.className=" border border-solide border-black rounded p-2 bg-white w-[16rem] h-[16rem] ";
+    const divEmploye=document.createElement("div");
+    divEmploye.className=" border border-solide border-black rounded p-2 bg-white w-[20rem] z-index-10";
+    divEmploye.name="divEmploye";
+   cotes_employe.appendChild(divEmploye);
    
+   utilisateur=JSON.parse(localStorage.getItem("utilisateur"))||[];
+   if(utilisateur.length===0){
+    divEmploye.textContent="Aucun employé trouvé";
+   }
+   return;
 })
+utilisateur.forEache(()=>{
+    let div = document.createElement("div");
+    div.className="p-4 border rounded shadow bg-gray-50";
+
+            div.innerHTML = `
+            <strong>Employé ${index + 1}</strong><br>
+            Nom: ${user.nom}<br>
+            Email: ${user.email}<br>
+            Téléphone: ${user.telephone || 'N/A'}<br>
+            Expériences: ${user.experiences || 'N/A'}
+        `;
+    divEmploye.appendChild(div);
+
+})
+
+
+
+
+
 
 
 // //AJOUTER un employe dans un chambre
