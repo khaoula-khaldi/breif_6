@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="index.css" rel="stylesheet">
 
 </head>
@@ -15,26 +15,23 @@
         background-repeat: no-repeat;
         height: 100vh;
     }
-
-    #formulaire {
-        display: none;
-    }
 </style>
 
-<body class="m-10 bg-gray-200">
-
+<body class="m-10 bg-gray-200 ">
+<div id="EmployeAffiche" class="bg-white overflow-y-auto border border-solide border-balck fixed mt-40 hidden w[100%]"></div>
     <div class="flex flex-col md:grid md:grid-cols-[1fr_3fr]">
 
-        <div id="cotes_employe" class="m-5">
+        <div id="cotes_employe" class="m-5 ">
             <div>
-                <button id="ajouterEmploye"  type="button" class="bg-green-400  px-20 py-2 mb-5 rounded-xl"> + Ajouter un
+                <button id="ajouterEmploye" type="button" class="bg-green-400  px-20 py-2 mb-5 rounded-xl"> + Ajouter un
                     employé</button>
-                <button id="afficherEmployees"  type="button" class="bg-orange-400  px-20 py-2 mb-5 rounded-xl"> Afficher les
+                <button id="afficherEmployees" type="button" class="bg-orange-400  px-20 py-2 mb-5 rounded-xl"> Afficher
+                    les
                     employés</button>
             </div>
-            <form id="formulaire" class="border border-solide-balck bg-white">
+            <form id="formulaire" class="border border-solide-balck bg-white hidden">
                 <div class="m-5">
-                    <h1 class="text-lg font-semibold flex justify-center overflow-y-auto ">profil d'employé</h1>
+                    <h1 class="text-lg font-semibold flex justify-center">profil d'employé</h1>
                     <div class="flex flex-col">
                         <div>
                             <label class="font-semibold">Photo :</label><br>
@@ -44,33 +41,29 @@
                             </div><br>
                             <input class="border border-solide-balck" type="url" name="photo" placeholder="URL"
                                 id="url_photo"><br><br>
-                            <span></span>
                         </div>
                         <div>
                             <label class="font-semibold">Nom :</label><br>
                             <input id="nome" class="border border-solide-balck rounded px-5 " data-type="username"
                                 type="text" placeholder="username">
-                            <span></span>
                         </div>
                         <br>
                         <div>
                             <label class="font-semibold">Email :</label><br>
                             <input id="email" class="border border-solide-balck rounded px-5 " data-type="email"
                                 type="text" placeholder="you@example.com">
-                            <span></span>
                         </div>
                         <br>
                         <div>
                             <label class="font-semibold">Télephone :</label><br>
                             <input id="telephone" class="border border-solide-balck rounded px-5 " data-type="tele"
                                 type="text" placeholder="+212 6/7xx xxx xxx">
-                            <span></span>
                         </div>
                         <br>
                         <div>
                             <label class="font-semibold">Role :</label><br>
                             <select id="role" class="border border-solide-balck bg-gray-30">
-                                <option> </option>
+                                <option></option>
                                 <option>Réception</option>
                                 <option>Salle des serveurs </option>
                                 <option>Salle de sécurité</option>
@@ -81,19 +74,27 @@
                         </div>
                         <br>
                         <div id="ExperiencesContainer" class="flex flex-col gap-2">
-                            <label class="font-semibold">Expériences professionnelles :</label><br>
-                            <div class="flex flex-row gap-2">
+                            <label class="font-semibold">Expériences professionnelles :</label>
+                            <div>
                                 <input id="Experiences" class="border border-solide-balck rounded px-5" data-type="text"
-                                    type="text" placeholder="Expériences professionnelles">
-                                <span></span>
-                                <button id="btn_plus" type="button"
-                                    class="bg-green-400 border border-solide-balck rounded-2xl w-10 p-2">+</button>
+                                    type="text" placeholder="Expériences professionnelles"><br>
+                                <label class="font-semibold">date de début :</label><br>
+                                <input id="dateDu" type="date" class="rounded px-5 py-2 my-1 border border-solide border-balck"><br>
+                                <label class="font-semibold">date de limite :</label><br>
+                                <input id="dateLi" type="date" class="rounded px-5 py-2 my-1 border border-solide border-balck"><br>
+                                <input id="" type="text">
                             </div>
+
+                            <button id="btn_plus" type="button"
+                                class="bg-green-700 border border-solide-balck rounded-2xl text-white p-2">ajouter autre
+                                Experiences</button>
+
                         </div>
                         <br>
 
-                        <div id="btn_envoyer">
-                            <button class="border border-solide-balck rounded bg-green-400 p-1">Envoyer</button>
+                        <div class="flex items-center justify-center">
+                            <button id="btn_envoyer" type="submit"
+                                class="border  border-solide-balck rounded-lg bg-green-400 hover:bg-green-200 p-1">Envoyer</button>
                         </div>
                     </div>
                 </div>
@@ -103,33 +104,33 @@
 
         <div id="sectionImage"
             class="card grid grid-cols-[2fr_1fr_2fr_1fr_1fr] grid-row-[1fr-1fr-1fr] gap-1 bg-contain md:bg-cover bg-top bg-no-repeat ">
-            <div  class="text-balck col-start-1 flex items-center justify-center ">📊"Salle de conférence
-                <button  class="btn_ajoute bg-blue-700 p-1 rounded-2xl w-10 ml-3 text-white">+</button>
+            <div class="text-balck col-start-1 flex items-center justify-center ">📊"Salle de conférence
+                <button class="btn_ajoute bg-blue-700 p-1 rounded-2xl w-10 ml-3 text-white">+</button>
             </div>
             <div class="text-white col-start-4  flex items-center justify-center bg-red-500/40  ">🔒 Salle de sécurité
-                <button  class="btn_ajoute bg-blue-700 p-1 rounded-2xl w-10 ml-3">+</button>
+                <button class="btn_ajoute bg-blue-700 p-1 rounded-2xl w-10 ml-3">+</button>
             </div>
             <div class="text-white col-start-5 flex items-center justify-center bg-red-500/40 font">🖥️ Salle des
                 serveurs
-                <button  class="btn_ajoute bg-blue-700 p-1 rounded-2xl w-10 ml-3">+</button>
+                <button class="btn_ajoute bg-blue-700 p-1 rounded-2xl w-10 ml-3">+</button>
             </div>
             <div class="text-white row-span-2 w-[24rem]  flex items-center  justify-center bg-red-500/40 ">🛎️ Réception
-                <button  class="btn_ajoute bg-blue-700 p-1 rounded-2xl w-10 ml-3">+</button>
+                <button class="btn_ajoute bg-blue-700 p-1 rounded-2xl w-10 ml-3">+</button>
             </div>
-            <div
-                class="text-white col-start-4 w-[17rem] mt-10 row-start-3  flex items-center  justify-center ">
+            <div class="text-white col-start-4 w-[17rem] mt-10 row-start-3  flex items-center  justify-center ">
                 👥
                 Salle du personnel
-                <button  class="btn_ajoute bg-blue-700 p-1 rounded-2xl w-10 ml-3">+</button>
+                <button class="btn_ajoute bg-blue-700 p-1 rounded-2xl w-10 ml-3">+</button>
             </div>
             <div
                 class="text-white col-start-5 row-start-3 w-[12rem] mt-10 flex items-center  justify-center bg-red-500/40 ">
                 📁
                 d’archives
-                <button  class="btn_ajoute bg-blue-700 p-1 rounded-2xl ml-4 w-10">+</button>
+                <button class="btn_ajoute bg-blue-700 p-1 rounded-2xl ml-4 w-10">+</button>
             </div>
         </div>
     </div>
+    <div class=" hidden bg-white w-[30%] rounded-2xl border-solide border-balck fixed top-1/2 left-1/2 -translate-1/2 " id="InfoContinaire"></div>
 </body>
 <script src="script.js"></script>
 
