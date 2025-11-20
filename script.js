@@ -4,6 +4,8 @@ let formulaire = document.getElementById('formulaire');
 
 ajouterEmploye.addEventListener('click', () => {
     formulaire.classList.remove('hidden');
+    EmployeAffiche.classList.add('hidden');
+
 });
 
 //validation des input des formulaire
@@ -17,7 +19,7 @@ function validationForm() {
 
     formulaire.addEventListener('submit', (e) => {
         e.preventDefault();
-
+      
         const objetInfo = {
             nom: document.getElementById("nome").value.trim(),
             email: document.getElementById("email").value.trim(),
@@ -39,7 +41,7 @@ function validationForm() {
         }
 
         // validation nom
-        const nomRegex = /^[a-zA-ZÀ-ÿ\s]{2,30}$/;
+        const nomRegex = /^[a-zA-ZÀ-ÿ\s]{3,30}$/;
         if (!nomRegex.test(objetInfo.nom)) {
             alert("Nom incorrect !");
             return;
@@ -66,15 +68,18 @@ function validationForm() {
         }
         //validation de la formulaire dynamique 
 
-        // stocker
+        // stokes dans local storeg
         utilisateur.push(objetInfo);
         localStorage.setItem("utilisateur", JSON.stringify(utilisateur));
         alert("Utilisateur ajouté !");
         formulaire.reset();
-        })
-    };
+
+    })
+};
 
 validationForm();
+
+
 let btnPlus = document.getElementById("btn_plus");
 btnPlus.addEventListener('click', function () {
 
@@ -111,6 +116,7 @@ btnPlus.addEventListener('click', function () {
 
 
 afficherEmployees.addEventListener('click', (e) => {
+    formulaire.classList.add('hidden');
 
     // Kola click → nmas7 lzone
     EmployeAffiche.innerHTML = "";
@@ -121,38 +127,35 @@ afficherEmployees.addEventListener('click', (e) => {
     // n3awwed nbni contenu jdid
     utilisateur.forEach((user, index) => {
         EmployeAffiche.innerHTML += `
-        <div class="rounded-2xl p-2 bg-white ">
-            <strong>Employé ${index + 1}</strong><br>
-            photo:${user.URL}<br>
+       <br> <div class="rounded-2xl p-2 bg-white mt-4 ">
+        <div class="w-20 h-20 rounded-full object-cover border mb-2"></div>
             Nom: ${user.nom}<br>
             role:${user.role}    
         </div>`;
     });
-     //btn fermer
-        const effacer = document.createElement("button");
-        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
-        effacer.type = "button";
-        effacer.textContent = "X";
-        EmployeAffiche.prepend(effacer);
-        effacer.addEventListener('click', (e) => {
-            EmployeAffiche.classList.add('hidden');
-        });
+    //btn fermer
+    const effacer = document.createElement("button");
+    effacer.className = "p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2";
+    effacer.type = "button";
+    effacer.textContent = "X";
+    EmployeAffiche.prepend(effacer);
+    effacer.addEventListener('click', (e) => {
+        EmployeAffiche.classList.add('hidden');
+    });
 });
 
 //AJOUTER un employe dans un chambre
 const InfoContinaire = document.getElementById('InfoContinaire');
 let sectionImage = document.getElementById("sectionImage");
-let btn_ajoute = document.querySelectorAll(".btn_ajoute");
+let btn_conference = document.getElementById("btn_conference");
 
-btn_ajoute.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn_conference.addEventListener('click', (e) => {
         InfoContinaire.classList.remove('hidden');
         InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
         utilisateur.forEach((user, index) => {
             InfoContinaire.innerHTML += `
             <div class="empDiv rounded-2xl p-2 bg-white ">
-                <strong>Employé ${index + 1}</strong><br>
-                photo:${user.URL}<br>
+            <div class="w-20 h-20 rounded-full object-cover border mb-2"></div>
                 Nom: ${user.nom}<br>
                 role:${user.role}    
             </div>`;
@@ -170,21 +173,374 @@ btn_ajoute.forEach(btn => {
         const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
         allEmpDiv.forEach((div, i) => {
             div.addEventListener('click', () => {
-                sectionImage.innerHTML = `
-                    <div class="p-3 bg-white rounded-xl shadow">
-                        <h2 class="font-bold text-lg mb-2">Employé sélectionné</h2>
-                        <p><strong>Nom :</strong> ${utilisateur[i].nom}</p>
-                        <p><strong>Role :</strong> ${utilisateur[i].role}</p>
-                        <p><strong>Photo :</strong> ${utilisateur[i].URL}</p>
-                    </div>
-                `;
-                 InfoContinaire.classList.add('hidden');  
+                conference.innerHTML = `
+                <div class="user p-3 bg-white rounded-xl absolute ">
+                    <div class="w-10 h-10 rounded-full object-cover border mb-2"></div>
+                    <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-centre items-centre absolute top-1 right-2">X</button>
+                    <p class="text-sm"><strong>Nom :</strong> ${utilisateur[i].nom}</p>
+                    <p class="text-sm"><strong>Role :</strong> ${utilisateur[i].role}</p>
+                </div>
+            `;
+             InfoContinaire.classList.add('hidden');
+            btn_ferment.addEventListener('click',(e)=>{
+               user.classList.add('hidden');
+            })
+            // switch(role){
+            //     case 1:role==="Réception";
+
+            //     break;
+            //     case 2:role==="Salle des serveurs";
+
+            //     break;
+            //     case 3:role==="Salle de sécurité";
+
+            //     break;
+            //     case 4:role==="Manager";
+
+            //     break;
+            //     case 5:role==="Nettoyage";
+
+            //     break;
+            //     default:
+
+
+            // }
+
+                InfoContinaire.classList.add('hidden');
             });
         });
 
     });
-});
 
+    let btn_securite = document.getElementById("btn_securite");
+
+    btn_securite.addEventListener('click', (e) => {
+        InfoContinaire.classList.remove('hidden');
+        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
+        utilisateur.forEach((user, index) => {
+            InfoContinaire.innerHTML += `
+            <div class="empDiv rounded-2xl p-2 bg-white ">
+            <div class="w-20 h-20 rounded-full object-cover border mb-2"></div>
+                Nom: ${user.nom}<br>
+                role:${user.role}    
+            </div>`;
+        });
+        //btn fermer
+        const effacer = document.createElement("button");
+        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
+        effacer.type = "button";
+        effacer.textContent = "X";
+        InfoContinaire.prepend(effacer);
+        effacer.addEventListener('click', (e) => {
+            InfoContinaire.classList.add('hidden');
+        });
+        // kythat employer fi chambre ta3O 
+        const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
+        allEmpDiv.forEach((div, i) => {
+            div.addEventListener('click', () => {
+                securite.innerHTML = `
+                <div class="user p-3 bg-white rounded-xl absolute ">
+                    <div class="w-10 h-10 rounded-full object-cover border mb-2"></div>
+                    <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
+                    <p class="text-sm"><strong>Nom :</strong> ${utilisateur[i].nom}</p>
+                    <p class="text-sm"><strong>Role :</strong> ${utilisateur[i].role}</p>
+                </div>
+            `;
+             InfoContinaire.classList.add('hidden');
+            btn_ferment.addEventListener('click',(e)=>{
+               user.classList.add('hidden');
+            })
+            // switch(role){
+            //     case 1:role==="Réception";
+
+            //     break;
+            //     case 2:role==="Salle des serveurs";
+
+            //     break;
+            //     case 3:role==="Salle de sécurité";
+
+            //     break;
+            //     case 4:role==="Manager";
+
+            //     break;
+            //     case 5:role==="Nettoyage";
+
+            //     break;
+            //     default:
+
+
+            // }
+
+                InfoContinaire.classList.add('hidden');
+            });
+        });
+
+    });
+
+
+      let btn_serveurs = document.getElementById("btn_serveurs");
+
+    btn_serveurs.addEventListener('click', (e) => {
+        InfoContinaire.classList.remove('hidden');
+        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
+        utilisateur.forEach((user, index) => {
+            InfoContinaire.innerHTML += `
+            <div class="empDiv rounded-2xl p-2 bg-white ">
+            <div class="w-20 h-20 rounded-full object-cover border mb-2"></div>
+                Nom: ${user.nom}<br>
+                role:${user.role}    
+            </div>`;
+        });
+        //btn fermer
+        const effacer = document.createElement("button");
+        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
+        effacer.type = "button";
+        effacer.textContent = "X";
+        InfoContinaire.prepend(effacer);
+        effacer.addEventListener('click', (e) => {
+            InfoContinaire.classList.add('hidden');
+        });
+        // kythat employer fi chambre ta3O 
+        const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
+        allEmpDiv.forEach((div, i) => {
+            div.addEventListener('click', () => {
+                serveurs.innerHTML = `
+                <div class="user p-3 bg-white rounded-xl absolute ">
+                    <div class="w-10 h-10 rounded-full object-cover border mb-2"></div>
+                    <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
+                    <p class="text-sm"><strong>Nom :</strong> ${utilisateur[i].nom}</p>
+                    <p class="text-sm"><strong>Role :</strong> ${utilisateur[i].role}</p>
+                </div>
+            `;
+             InfoContinaire.classList.add('hidden');
+            btn_ferment.addEventListener('click',(e)=>{
+               user.classList.add('hidden');
+            })
+            // switch(role){
+            //     case 1:role==="Réception";
+
+            //     break;
+            //     case 2:role==="Salle des serveurs";
+
+            //     break;
+            //     case 3:role==="Salle de sécurité";
+
+            //     break;
+            //     case 4:role==="Manager";
+
+            //     break;
+            //     case 5:role==="Nettoyage";
+
+            //     break;
+            //     default:
+
+
+            // }
+
+                InfoContinaire.classList.add('hidden');
+            });
+        });
+
+    });
+
+
+
+    let btn_Reception = document.getElementById("btn_Reception");
+
+    btn_Reception.addEventListener('click', (e) => {
+        InfoContinaire.classList.remove('hidden');
+        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
+        utilisateur.forEach((user, index) => {
+            InfoContinaire.innerHTML += `
+            <div class="empDiv rounded-2xl p-2 bg-white ">
+            <div class="w-20 h-20 rounded-full object-cover border mb-2"></div>
+                Nom: ${user.nom}<br>
+                role:${user.role}    
+            </div>`;
+        });
+        //btn fermer
+        const effacer = document.createElement("button");
+        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
+        effacer.type = "button";
+        effacer.textContent = "X";
+        InfoContinaire.prepend(effacer);
+        effacer.addEventListener('click', (e) => {
+            InfoContinaire.classList.add('hidden');
+        });
+        // kythat employer fi chambre ta3O 
+        const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
+        allEmpDiv.forEach((div, i) => {
+            div.addEventListener('click', () => {
+                Reception.innerHTML = `
+                <div class="user p-3 bg-white rounded-xl absolute ">
+                    <div class="w-10 h-10 rounded-full object-cover border mb-2"></div>
+                    <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
+                    <p class="text-sm"><strong>Nom :</strong> ${utilisateur[i].nom}</p>
+                    <p class="text-sm"><strong>Role :</strong> ${utilisateur[i].role}</p>
+                </div>
+            `;
+             InfoContinaire.classList.add('hidden');
+            btn_ferment.addEventListener('click',(e)=>{
+               user.classList.add('hidden');
+            })
+            // switch(role){
+            //     case 1:role==="Réception";
+
+            //     break;
+            //     case 2:role==="Salle des serveurs";
+
+            //     break;
+            //     case 3:role==="Salle de sécurité";
+
+            //     break;
+            //     case 4:role==="Manager";
+
+            //     break;
+            //     case 5:role==="Nettoyage";
+
+            //     break;
+            //     default:
+
+
+            // }
+
+                InfoContinaire.classList.add('hidden');
+            });
+        });
+
+    });
+
+
+    let btn_personnel = document.getElementById("btn_personnel");
+
+    btn_personnel.addEventListener('click', (e) => {
+        InfoContinaire.classList.remove('hidden');
+        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
+        utilisateur.forEach((user, index) => {
+            InfoContinaire.innerHTML += `
+            <div class="empDiv rounded-2xl p-2 bg-white ">
+            <div class="w-20 h-20 rounded-full object-cover border mb-2"></div>
+                Nom: ${user.nom}<br>
+                role:${user.role}    
+            </div>`;
+        });
+        //btn fermer
+        const effacer = document.createElement("button");
+        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
+        effacer.type = "button";
+        effacer.textContent = "X";
+        InfoContinaire.prepend(effacer);
+        effacer.addEventListener('click', (e) => {
+            InfoContinaire.classList.add('hidden');
+        });
+        // kythat employer fi chambre ta3O 
+        const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
+        allEmpDiv.forEach((div, i) => {
+            div.addEventListener('click', () => {
+                personnel.innerHTML = `
+                <div class="user p-3 bg-white rounded-xl absolute ">
+                    <div class="w-10 h-10 rounded-full object-cover border mb-2"></div>
+                    <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
+                    <p class="text-sm"><strong>Nom :</strong> ${utilisateur[i].nom}</p>
+                    <p class="text-sm"><strong>Role :</strong> ${utilisateur[i].role}</p>
+                </div>
+            `;
+             InfoContinaire.classList.add('hidden');
+            btn_ferment.addEventListener('click',(e)=>{
+               user.classList.add('hidden');
+            })
+            // switch(role){
+            //     case 1:role==="Réception";
+
+            //     break;
+            //     case 2:role==="Salle des serveurs";
+
+            //     break;
+            //     case 3:role==="Salle de sécurité";
+
+            //     break;
+            //     case 4:role==="Manager";
+
+            //     break;
+            //     case 5:role==="Nettoyage";
+
+            //     break;
+            //     default:
+
+
+            // }
+
+                InfoContinaire.classList.add('hidden');
+            });
+        });
+
+    });
+
+
+let btn_archives = document.getElementById("btn_archives");
+
+    btn_archives.addEventListener('click', (e) => {
+        InfoContinaire.classList.remove('hidden');
+        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
+        utilisateur.forEach((user, index) => {
+            InfoContinaire.innerHTML += `
+            <div class="empDiv rounded-2xl p-2 bg-white ">
+            <div class="w-20 h-20 rounded-full object-cover border mb-2"></div>
+                Nom: ${user.nom}<br>
+                role:${user.role}    
+            </div>`;
+        });
+        //btn fermer
+        const effacer = document.createElement("button");
+        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
+        effacer.type = "button";
+        effacer.textContent = "X";
+        InfoContinaire.prepend(effacer);
+        effacer.addEventListener('click', (e) => {
+            InfoContinaire.classList.add('hidden');
+        });
+        // kythat employer fi chambre ta3O 
+        const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
+        allEmpDiv.forEach((div, i) => {
+            div.addEventListener('click', () => {
+                archives.innerHTML = `
+                <div class="user p-3 bg-white rounded-xl absolute ">
+                    <div class="w-10 h-10 rounded-full object-cover border mb-2"></div>
+                    <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
+                    <p class="text-sm"><strong>Nom :</strong> ${utilisateur[i].nom}</p>
+                    <p class="text-sm"><strong>Role :</strong> ${utilisateur[i].role}</p>
+                </div>
+            `;
+             InfoContinaire.classList.add('hidden');
+            btn_ferment.addEventListener('click',(e)=>{
+               user.classList.add('hidden');
+            })
+            // switch(role){
+            //     case 1:role==="Réception";
+
+            //     break;
+            //     case 2:role==="Salle des serveurs";
+
+            //     break;
+            //     case 3:role==="Salle de sécurité";
+
+            //     break;
+            //     case 4:role==="Manager";
+
+            //     break;
+            //     case 5:role==="Nettoyage";
+
+            //     break;
+            //     default:
+
+
+            // }
+
+                InfoContinaire.classList.add('hidden');
+            });
+        });
+
+    });
 
 
 

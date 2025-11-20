@@ -73,10 +73,10 @@
 </style>
 
 <body class="m-10 bg-gray-200 ">
-<div id="EmployeAffiche" class=" overflow-y-auto border border-solide border-balck fixed mt-40 hidden w[100%]"></div>
+<div id="EmployeAffiche" class="bg-white border border-solide-balck mt-[8.8rem] ml-[1.4rem] hidden absolute w-[20rem] max-h-[70vh] overflow-y-auto"></div>
     <div class="flex flex-col md:grid md:grid-cols-[1fr_3fr]">
 
-        <div id="cotes_employe" class="m-5 ">
+        <div id="cotes_employe" class="m-5">
             <div>
                 <button id="ajouterEmploye" type="button" class="bg-green-400  px-20 py-2 mb-5 rounded-xl"> + Ajouter un
                     employé</button>
@@ -84,18 +84,18 @@
                     les
                     employés</button>
             </div>
-            <form id="formulaire" class="border border-solide-balck bg-white hidden">
+            <form id="formulaire" class="border border-solide-balck bg-white hidden max-h-[70vh] overflow-y-auto">
                 <div class="m-5">
                     <h1 class="text-lg font-semibold flex justify-center">profil d'employé</h1>
                     <div class="flex flex-col">
                         <div>
                             <label class="font-semibold">Photo :</label><br>
                             <div id="container_photo"
-                                class="w-20 h-20 rounded overflow-hidden bg-gray-50 flex items-center justify-center border">
+                                class="w-20 h-20 rounded overflow-hidden bg-gray-50 border">
                                 <span id="text_container_photo" class="text-xs text-gray-400">No image</span>
                             </div><br>
-                            <input class="border border-solide-balck" type="url" name="photo" placeholder="URL"
-                                id="url_photo"><br><br>
+                            <!-- <input class="border border-solide-balck" type="url" name="photo" placeholder="URL"
+                                id="url_photo"><br><br> -->
                         </div>
                         <div>
                             <label class="font-semibold">Nom :</label><br>
@@ -159,33 +159,33 @@
 
         <div id="sectionImage"
             class="card grid grid-cols-[2fr_1fr_2fr_1fr_1fr] grid-row-[1fr-1fr-1fr] gap-1 bg-contain md:bg-cover bg-top bg-no-repeat ">
-            <div class="text-balck col-start-1 flex items-center justify-center ">📊"Salle de conférence
-                <button class="btn_ajoute bg-blue-700 p-1 rounded-2xl w-10 ml-3 text-white">+</button>
+            <div id="conference" class="text-balck col-start-1 font-semibold mt-2">📊"Salle de conférence
+                <button id="btn_conference" class="bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
-            <div class="text-white col-start-4  flex items-center justify-center bg-red-500/40  ">🔒 Salle de sécurité
-                <button class="btn_ajoute bg-blue-700 p-1 rounded-2xl w-10 ml-3">+</button>
+            <div id="securite" class="text-balck col-start-4  bg-red-500/40 font-semibold  mt-2 ">🔒 Salle de sécurité
+                <button id="btn_securite" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
-            <div class="text-white col-start-5 flex items-center justify-center bg-red-500/40 font">🖥️ Salle des
+            <div id="serveurs" class="text-balck col-start-5 bg-red-500/40 font-semibold  mt-2">🖥️ Salle des
                 serveurs
-                <button class="btn_ajoute bg-blue-700 p-1 rounded-2xl w-10 ml-3">+</button>
+                <button id="btn_serveurs" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
-            <div class="text-white row-span-2 w-[24rem]  flex items-center  justify-center bg-red-500/40 ">🛎️ Réception
-                <button class="btn_ajoute bg-blue-700 p-1 rounded-2xl w-10 ml-3">+</button>
+            <div id="Reception" class="row-span-2 w-[24rem] text-balck bg-red-500/40 font-semibold ">🛎️ Réception
+                <button id="btn_Reception" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
-            <div class="text-white col-start-4 w-[17rem] mt-10 row-start-3  flex items-center  justify-center ">
+            <div id="personnel" class="text-balck col-start-4 w-[17rem] mt-10 row-start-3 font-semibold ">
                 👥
                 Salle du personnel
-                <button class="btn_ajoute bg-blue-700 p-1 rounded-2xl w-10 ml-3">+</button>
+                <button id="btn_personnel" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
-            <div
-                class="text-white col-start-5 row-start-3 w-[12rem] mt-10 flex items-center  justify-center bg-red-500/40 ">
+            <div id="archives"
+                class="text-balck col-start-5 row-start-3 w-[12rem] mt-10 bg-red-500/40 font-semibold ">
                 📁
                 d’archives
-                <button class="btn_ajoute bg-blue-700 p-1 rounded-2xl ml-4 w-10">+</button>
+                <button id="btn_archives" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
         </div>
     </div>
-    <div class=" hidden bg-white w-[30%] rounded-2xl border-solide border-balck fixed top-1/2 left-1/2 -translate-1/2 " id="InfoContinaire"></div>
+    <div class=" hidden bg-white w-[30%] rounded-2xl border-solide border-balck fixed top-1/2 left-1/2 -translate-1/2 max-h-[70vh] overflow-y-auto" id="InfoContinaire"></div>
 </body>
 <script src="script.js"></script>
 
