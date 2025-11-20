@@ -25,11 +25,13 @@ function validationForm() {
             email: document.getElementById("email").value.trim(),
             telephone: document.getElementById("telephone").value.trim(),
             experiences: document.getElementById("Experiences").value.trim(),
-            role: document.getElementById("role").value.trim()
+            role: document.getElementById("role").value.trim(),
+            url : document.getElementById("url").value.trim()
+            
         };
 
         // validation des champs vides
-        if (!objetInfo.nom || !objetInfo.email || !objetInfo.telephone || !objetInfo.experiences || !objetInfo.role) {
+        if (!objetInfo.nom || !objetInfo.email || !objetInfo.telephone || !objetInfo.experiences || !objetInfo.role || !objetInfo.url) {
             alert("Remplir tous les champs !!");
             return;
         }
@@ -68,6 +70,12 @@ function validationForm() {
         }
         //validation de la formulaire dynamique 
 
+        //validation de url
+       const validImageUrl = /^https?:\/\/.*\.(jpg|jpeg|png|gif|webp)(\?.*)?$/i;
+            if (!validImageUrl.test(objetInfo.url)) {
+            alert("url incorrect !");
+            return;
+        }
         // stokes dans local storeg
         utilisateur.push(objetInfo);
         localStorage.setItem("utilisateur", JSON.stringify(utilisateur));
@@ -78,6 +86,10 @@ function validationForm() {
 };
 
 validationForm();
+let utilisateurs = JSON.parse(localStorage.getItem("utilisateur"));
+for(let i = 0; i < localStorage.length; i++){
+ 
+}
 
 
 let btnPlus = document.getElementById("btn_plus");
@@ -544,3 +556,6 @@ let btn_archives = document.getElementById("btn_archives");
 
 
 
+
+//     validateField(form.container_photo, validImageUrl, "URL doit pointer vers une image (jpg, png, etc.)");
+//   });

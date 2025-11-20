@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="index.css" rel="stylesheet">
 
 </head>
@@ -15,65 +15,75 @@
         background-repeat: no-repeat;
         height: 100vh;
     }
+
     @media (max-width: 750px) {
-    .container {
-        flex-direction: column;
+        .container {
+            flex-direction: column;
+        }
+
+        .left-panel {
+            width: 100%;
+        }
+
+        .right-panel {
+            min-height: 300px;
+            transform: rotate(90deg);
+            margin-top: 10em;
+        }
+
+        #zone-employees {
+            transform: rotate(-90deg);
+        }
+
+        .selected {
+            transform: rotate(-90deg);
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+
+        .selected:hover {
+            transform: rotate(-90deg) translateY(-15px);
+            transition: transform 0.3s ease-in;
+        }
+
+        .assignedEmpls {
+            height: 6rem;
+        }
+
+        .right-panel img {
+            min-height: 100%;
+            height: 100%;
+            width: 700px;
+        }
+
+        .rooms-container {
+            min-height: 100%;
+            min-width: 700px;
+        }
     }
 
-    .left-panel {
-        width: 100%;
-    }
+    @media (max-width: 430px) {
+        .right-panel {
+            min-height: 250px;
+        }
 
-    .right-panel {
-        min-height: 300px;
-        transform: rotate(90deg);
-        margin-top: 10em;
-    }
+        .right-panel img {
+            /* min-height: 230px; */
+            height: 200px;
+            width: 400px;
+        }
 
-    #zone-employees {
-        transform: rotate(-90deg);
+        .rooms-container {
+            min-height: 200px;
+            min-width: 400px;
+        }
     }
-
-    .selected {
-        transform: rotate(-90deg);
-        width: 2.5rem;
-        height: 2.5rem;
-    }
-    .selected:hover {
-        transform: rotate(-90deg) translateY(-15px);
-        transition: transform 0.3s ease-in;
-    }
-    .assignedEmpls{
-        height: 6rem;
-    }
-    .right-panel img{
-        min-height: 100%;
-        height: 100%;
-        width: 700px;
-    }
-    .rooms-container{
-        min-height: 100%;
-        min-width: 700px;
-    }
-}
-@media (max-width: 430px) {
-    .right-panel {
-        min-height: 250px;
-    }
-    .right-panel img{
-        /* min-height: 230px; */
-        height: 200px;
-        width: 400px;
-    }
-    .rooms-container{
-        min-height: 200px;
-        min-width: 400px;
-    }
-}
 </style>
 
 <body class="m-10 bg-gray-200 ">
-<div id="EmployeAffiche" class="bg-white border border-solide-balck mt-[8.8rem] ml-[1.4rem] hidden absolute w-[20rem] max-h-[70vh] overflow-y-auto"></div>
+    <div id="EmployeAffiche"
+        class="bg-white border border-solide-balck mt-[8.8rem] ml-[1.4rem] hidden absolute w-[20rem] max-h-[70vh] overflow-y-auto">
+    </div>
     <div class="flex flex-col md:grid md:grid-cols-[1fr_3fr]">
 
         <div id="cotes_employe" class="m-5">
@@ -90,12 +100,12 @@
                     <div class="flex flex-col">
                         <div>
                             <label class="font-semibold">Photo :</label><br>
-                            <div id="container_photo"
-                                class="w-20 h-20 rounded overflow-hidden bg-gray-50 border">
-                                <span id="text_container_photo" class="text-xs text-gray-400">No image</span>
+
+                            <div id="container_photo">
+                             <span  class="     "><img src="" alt="No image"></span> 
+                                <input id="url" class="border border-solide-balck rounded px-5 " data-type="url" type="text" placeholder="url">
                             </div><br>
-                            <!-- <input class="border border-solide-balck" type="url" name="photo" placeholder="URL"
-                                id="url_photo"><br><br> -->
+
                         </div>
                         <div>
                             <label class="font-semibold">Nom :</label><br>
@@ -134,9 +144,11 @@
                                 <input id="Experiences" class="border border-solide-balck rounded px-5" data-type="text"
                                     type="text" placeholder="Expériences professionnelles"><br>
                                 <label class="font-semibold">date de début :</label><br>
-                                <input id="dateDu" type="date" class="rounded px-5 py-2 my-1 border border-solide border-balck"><br>
+                                <input id="dateDu" type="date"
+                                    class="rounded px-5 py-2 my-1 border border-solide border-balck"><br>
                                 <label class="font-semibold">date de limite :</label><br>
-                                <input id="dateLi" type="date" class="rounded px-5 py-2 my-1 border border-solide border-balck"><br>
+                                <input id="dateLi" type="date"
+                                    class="rounded px-5 py-2 my-1 border border-solide border-balck"><br>
                                 <input id="" type="text">
                             </div>
 
@@ -159,33 +171,42 @@
 
         <div id="sectionImage"
             class="card grid grid-cols-[2fr_1fr_2fr_1fr_1fr] grid-row-[1fr-1fr-1fr] gap-1 bg-contain md:bg-cover bg-top bg-no-repeat ">
-            <div id="conference" class="text-balck col-start-1 font-semibold mt-2">📊"Salle de conférence
+            <div id="conference" class="text-balck col-start-1 font-semibold border border-solide border-red-700 mt-2">
+                📊"Salle de conférence
                 <button id="btn_conference" class="bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
-            <div id="securite" class="text-balck col-start-4  bg-red-500/40 font-semibold  mt-2 ">🔒 Salle de sécurité
+            <div id="securite"
+                class="text-balck col-start-4  bg-red-500/40 font-semibold border border-solide border-red-700  mt-2 ">
+                🔒 Salle de sécurité
                 <button id="btn_securite" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
-            <div id="serveurs" class="text-balck col-start-5 bg-red-500/40 font-semibold  mt-2">🖥️ Salle des
+            <div id="serveurs"
+                class="text-balck col-start-5 bg-red-500/40 font-semibold border border-solide border-red-700  mt-2">🖥️
+                Salle des
                 serveurs
                 <button id="btn_serveurs" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
-            <div id="Reception" class="row-span-2 w-[24rem] text-balck bg-red-500/40 font-semibold ">🛎️ Réception
+            <div id="Reception"
+                class="row-span-2 w-[24rem] text-balck bg-red-500/40 font-semibold border border-solide border-red-700 ">
+                🛎️ Réception
                 <button id="btn_Reception" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
-            <div id="personnel" class="text-balck col-start-4 w-[17rem] mt-10 row-start-3 font-semibold ">
+            <div id="personnel"
+                class="text-balck col-start-4 w-[17rem] mt-10 row-start-3 font-semibold border border-solide border-red-700 ">
                 👥
                 Salle du personnel
                 <button id="btn_personnel" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
             <div id="archives"
-                class="text-balck col-start-5 row-start-3 w-[12rem] mt-10 bg-red-500/40 font-semibold ">
+                class="text-balck col-start-5 row-start-3 w-[12rem] mt-10 bg-red-500/40 font-semibold border border-solide border-red-700 ">
                 📁
                 d’archives
                 <button id="btn_archives" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
         </div>
     </div>
-    <div class=" hidden bg-white w-[30%] rounded-2xl border-solide border-balck fixed top-1/2 left-1/2 -translate-1/2 max-h-[70vh] overflow-y-auto" id="InfoContinaire"></div>
+    <div class=" hidden bg-white w-[30%] rounded-2xl border-solide border-balck fixed top-1/2 left-1/2 -translate-1/2 max-h-[70vh] overflow-y-auto"
+        id="InfoContinaire"></div>
 </body>
 <script src="script.js"></script>
 
