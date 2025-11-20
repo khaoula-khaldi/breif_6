@@ -16,85 +16,23 @@
         height: 100vh;
     }
 
-    @media (max-width: 750px) {
-        .container {
-            flex-direction: column;
-        }
-
-        .left-panel {
-            width: 100%;
-        }
-
-        .right-panel {
-            min-height: 300px;
-            transform: rotate(90deg);
-            margin-top: 10em;
-        }
-
-        #zone-employees {
-            transform: rotate(-90deg);
-        }
-
-        .selected {
-            transform: rotate(-90deg);
-            width: 2.5rem;
-            height: 2.5rem;
-        }
-
-        .selected:hover {
-            transform: rotate(-90deg) translateY(-15px);
-            transition: transform 0.3s ease-in;
-        }
-
-        .assignedEmpls {
-            height: 6rem;
-        }
-
-        .right-panel img {
-            min-height: 100%;
-            height: 100%;
-            width: 700px;
-        }
-
-        .rooms-container {
-            min-height: 100%;
-            min-width: 700px;
-        }
-    }
-
-    @media (max-width: 430px) {
-        .right-panel {
-            min-height: 250px;
-        }
-
-        .right-panel img {
-            /* min-height: 230px; */
-            height: 200px;
-            width: 400px;
-        }
-
-        .rooms-container {
-            min-height: 200px;
-            min-width: 400px;
-        }
-    }
 </style>
 
 <body class="m-10 bg-gray-200 ">
     <div id="EmployeAffiche"
-        class="bg-white border border-solide-balck mt-[8.8rem] ml-[1.4rem] hidden absolute w-[20rem] max-h-[70vh] overflow-y-auto">
+        class="bg-white border border-solide-balck md:mt-[8.8rem] mt-[15rem] md:ml-[1.4rem] ml-[2.4rem] hidden absolute md:w-[20rem] md:max-h-[70vh] max-h-[30vh] overflow-y-auto">
     </div>
-    <div class="flex flex-col md:grid md:grid-cols-[1fr_3fr]">
+    <div class="flex flex-col md:flex-row">
 
         <div id="cotes_employe" class="m-5">
             <div>
-                <button id="ajouterEmploye" type="button" class="bg-green-400  px-20 py-2 mb-5 rounded-xl"> + Ajouter un
+                <button id="ajouterEmploye" type="button" class="bg-green-400  px-10 md:px-20 py-2 mb-5 rounded-xl "> + Ajouter un
                     employé</button>
-                <button id="afficherEmployees" type="button" class="bg-orange-400  px-20 py-2 mb-5 rounded-xl"> Afficher
+                <button id="afficherEmployees" type="button" class="bg-orange-400  px-10 md:px-20 py-2 mb-5 rounded-xl"> Afficher
                     les
                     employés</button>
             </div>
-            <form id="formulaire" class="border border-solide-balck bg-white hidden max-h-[70vh] overflow-y-auto">
+            <form id="formulaire" class="border border-solide-balck bg-white hidden max-h-[40vh] md:max-h-[70vh] overflow-y-auto">
                 <div class="m-5">
                     <h1 class="text-lg font-semibold flex justify-center">profil d'employé</h1>
                     <div class="flex flex-col">
@@ -170,18 +108,18 @@
 
 
         <div id="sectionImage"
-            class="card grid grid-cols-[2fr_1fr_2fr_1fr_1fr] grid-row-[1fr-1fr-1fr] gap-1 bg-contain md:bg-cover bg-top bg-no-repeat ">
-            <div id="conference" class="text-balck col-start-1 font-semibold border border-solide border-red-700 mt-2">
+            class="card  md:grid grid-cols-[2fr_1fr_2fr_1fr_1fr] md:grid-row-[1fr-1fr-1fr] gap-1 bg-contain bg-cover bg-top bg-no-repeat">
+            <div id="conference" class="text-balck md:col-start-1 font-semibold border border-solide border-red-700 mt-2">
                 📊"Salle de conférence
                 <button id="btn_conference" class="bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
             <div id="securite"
-                class="text-balck col-start-4  bg-red-500/40 font-semibold border border-solide border-red-700  mt-2 ">
+                class="text-balck md:col-start-4  bg-red-500/40 font-semibold border border-solide border-red-700  mt-2 ">
                 🔒 Salle de sécurité
                 <button id="btn_securite" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
             <div id="serveurs"
-                class="text-balck col-start-5 bg-red-500/40 font-semibold border border-solide border-red-700  mt-2">🖥️
+                class="text-balck md:col-start-5 bg-red-500/40 font-semibold border border-solide border-red-700  mt-2">🖥️
                 Salle des
                 serveurs
                 <button id="btn_serveurs" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
@@ -192,21 +130,20 @@
                 <button id="btn_Reception" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
             <div id="personnel"
-                class="text-balck col-start-4 w-[17rem] mt-10 row-start-3 font-semibold border border-solide border-red-700 ">
+                class="text-balck md:col-start-4 w-[17rem] mt-10 row-start-3 font-semibold border border-solide border-red-700 ">
                 👥
                 Salle du personnel
                 <button id="btn_personnel" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
             <div id="archives"
-                class="text-balck col-start-5 row-start-3 w-[12rem] mt-10 bg-red-500/40 font-semibold border border-solide border-red-700 ">
+                class="text-balck md:col-start-5 row-start-3 w-[12rem] mt-10 bg-red-500/40 font-semibold border border-solide border-red-700 ">
                 📁
                 d’archives
                 <button id="btn_archives" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
         </div>
     </div>
-    <div class=" hidden bg-white w-[30%] rounded-2xl border-solide border-balck fixed top-1/2 left-1/2 -translate-1/2 max-h-[70vh] overflow-y-auto"
-        id="InfoContinaire"></div>
+    <div class=" hidden bg-white w-[25%] rounded-2xl border-solide border-balck fixed top-1/2 left-1/2 -translate-1/2 max-h-[70vh] overflow-y-auto" id="InfoContinaire"></div>
 </body>
 <script src="script.js"></script>
 

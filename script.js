@@ -86,10 +86,7 @@ function validationForm() {
 };
 
 validationForm();
-let utilisateurs = JSON.parse(localStorage.getItem("utilisateur"));
-for(let i = 0; i < localStorage.length; i++){
- 
-}
+
 
 
 let btnPlus = document.getElementById("btn_plus");
@@ -186,37 +183,28 @@ let btn_conference = document.getElementById("btn_conference");
         allEmpDiv.forEach((div, i) => {
             div.addEventListener('click', () => {
                 conference.innerHTML = `
-                <div class="user p-3 bg-white rounded-xl absolute ">
-                    <div class="w-10 h-10 rounded-full object-cover border mb-2"></div>
-                    <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-centre items-centre absolute top-1 right-2">X</button>
-                    <p class="text-sm"><strong>Nom :</strong> ${utilisateur[i].nom}</p>
-                    <p class="text-sm"><strong>Role :</strong> ${utilisateur[i].role}</p>
+                <div class="user_conference p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre  ">
+                    <div id="image"><img src="" alt="Non image" ></div>
+                    <button class="btn_ferment_conference p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-centre items-centre absolute top-1 right-2">X</button>
+                    <p class="text-sm"> ${utilisateur[i].nom}</p>
                 </div>
             `;
              InfoContinaire.classList.add('hidden');
-            btn_ferment.addEventListener('click',(e)=>{
-               user.classList.add('hidden');
+            btn_ferment_conference.addEventListener('click',(e)=>{
+                user_conference.style.display="none";
             })
-            // switch(role){
-            //     case 1:role==="Réception";
-
-            //     break;
-            //     case 2:role==="Salle des serveurs";
-
-            //     break;
-            //     case 3:role==="Salle de sécurité";
-
-            //     break;
-            //     case 4:role==="Manager";
-
-            //     break;
-            //     case 5:role==="Nettoyage";
-
-            //     break;
-            //     default:
+           
 
 
-            // }
+
+
+
+
+
+
+
+
+
 
                 InfoContinaire.classList.add('hidden');
             });
@@ -251,37 +239,29 @@ let btn_conference = document.getElementById("btn_conference");
         allEmpDiv.forEach((div, i) => {
             div.addEventListener('click', () => {
                 securite.innerHTML = `
-                <div class="user p-3 bg-white rounded-xl absolute ">
-                    <div class="w-10 h-10 rounded-full object-cover border mb-2"></div>
+                <div class="user p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre ">
+                    <<div id="image"><img src="" alt="Non image" ></div>
                     <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
-                    <p class="text-sm"><strong>Nom :</strong> ${utilisateur[i].nom}</p>
-                    <p class="text-sm"><strong>Role :</strong> ${utilisateur[i].role}</p>
+                    <p class="text-sm"> ${utilisateur[i].nom}</p>
                 </div>
             `;
              InfoContinaire.classList.add('hidden');
             btn_ferment.addEventListener('click',(e)=>{
                user.classList.add('hidden');
             })
-            // switch(role){
-            //     case 1:role==="Réception";
-
-            //     break;
-            //     case 2:role==="Salle des serveurs";
-
-            //     break;
-            //     case 3:role==="Salle de sécurité";
-
-            //     break;
-            //     case 4:role==="Manager";
-
-            //     break;
-            //     case 5:role==="Nettoyage";
-
-            //     break;
-            //     default:
+           
 
 
-            // }
+
+
+
+
+
+
+
+
+
+
 
                 InfoContinaire.classList.add('hidden');
             });
@@ -317,37 +297,29 @@ let btn_conference = document.getElementById("btn_conference");
         allEmpDiv.forEach((div, i) => {
             div.addEventListener('click', () => {
                 serveurs.innerHTML = `
-                <div class="user p-3 bg-white rounded-xl absolute ">
+                <div class="user p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre ">
                     <div class="w-10 h-10 rounded-full object-cover border mb-2"></div>
                     <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
-                    <p class="text-sm"><strong>Nom :</strong> ${utilisateur[i].nom}</p>
-                    <p class="text-sm"><strong>Role :</strong> ${utilisateur[i].role}</p>
+                    <p class="text-sm"> ${utilisateur[i].nom}</p>
                 </div>
             `;
              InfoContinaire.classList.add('hidden');
             btn_ferment.addEventListener('click',(e)=>{
                user.classList.add('hidden');
             })
-            // switch(role){
-            //     case 1:role==="Réception";
-
-            //     break;
-            //     case 2:role==="Salle des serveurs";
-
-            //     break;
-            //     case 3:role==="Salle de sécurité";
-
-            //     break;
-            //     case 4:role==="Manager";
-
-            //     break;
-            //     case 5:role==="Nettoyage";
-
-            //     break;
-            //     default:
+           
 
 
-            // }
+
+
+
+
+
+
+
+
+
+
 
                 InfoContinaire.classList.add('hidden');
             });
@@ -384,37 +356,29 @@ let btn_conference = document.getElementById("btn_conference");
         allEmpDiv.forEach((div, i) => {
             div.addEventListener('click', () => {
                 Reception.innerHTML = `
-                <div class="user p-3 bg-white rounded-xl absolute ">
-                    <div class="w-10 h-10 rounded-full object-cover border mb-2"></div>
+                <div class="user p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre ">
+                    <div id="image"><img src="" alt="Non image" ></div>
                     <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
-                    <p class="text-sm"><strong>Nom :</strong> ${utilisateur[i].nom}</p>
-                    <p class="text-sm"><strong>Role :</strong> ${utilisateur[i].role}</p>
+                    <p class="text-sm"> ${utilisateur[i].nom}</p>
                 </div>
             `;
              InfoContinaire.classList.add('hidden');
             btn_ferment.addEventListener('click',(e)=>{
                user.classList.add('hidden');
             })
-            // switch(role){
-            //     case 1:role==="Réception";
-
-            //     break;
-            //     case 2:role==="Salle des serveurs";
-
-            //     break;
-            //     case 3:role==="Salle de sécurité";
-
-            //     break;
-            //     case 4:role==="Manager";
-
-            //     break;
-            //     case 5:role==="Nettoyage";
-
-            //     break;
-            //     default:
+           
 
 
-            // }
+
+
+
+
+
+
+
+
+
+
 
                 InfoContinaire.classList.add('hidden');
             });
@@ -450,37 +414,29 @@ let btn_conference = document.getElementById("btn_conference");
         allEmpDiv.forEach((div, i) => {
             div.addEventListener('click', () => {
                 personnel.innerHTML = `
-                <div class="user p-3 bg-white rounded-xl absolute ">
-                    <div class="w-10 h-10 rounded-full object-cover border mb-2"></div>
+                <div class="user p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre ">
+                    <div id="image"><img src="" alt="Non image" ></div>
                     <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
-                    <p class="text-sm"><strong>Nom :</strong> ${utilisateur[i].nom}</p>
-                    <p class="text-sm"><strong>Role :</strong> ${utilisateur[i].role}</p>
+                    <p class="text-sm"> ${utilisateur[i].nom}</p>
                 </div>
             `;
              InfoContinaire.classList.add('hidden');
             btn_ferment.addEventListener('click',(e)=>{
                user.classList.add('hidden');
             })
-            // switch(role){
-            //     case 1:role==="Réception";
-
-            //     break;
-            //     case 2:role==="Salle des serveurs";
-
-            //     break;
-            //     case 3:role==="Salle de sécurité";
-
-            //     break;
-            //     case 4:role==="Manager";
-
-            //     break;
-            //     case 5:role==="Nettoyage";
-
-            //     break;
-            //     default:
+           
 
 
-            // }
+
+
+
+
+
+
+
+
+
+
 
                 InfoContinaire.classList.add('hidden');
             });
@@ -516,37 +472,31 @@ let btn_archives = document.getElementById("btn_archives");
         allEmpDiv.forEach((div, i) => {
             div.addEventListener('click', () => {
                 archives.innerHTML = `
-                <div class="user p-3 bg-white rounded-xl absolute ">
-                    <div class="w-10 h-10 rounded-full object-cover border mb-2"></div>
+                <div class="user p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre ">
+                    <div id="image"><img src="" alt="Non image" ></div>
                     <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
-                    <p class="text-sm"><strong>Nom :</strong> ${utilisateur[i].nom}</p>
-                    <p class="text-sm"><strong>Role :</strong> ${utilisateur[i].role}</p>
+                    <p class="text-sm"> ${utilisateur[i].nom}</p>   
                 </div>
             `;
              InfoContinaire.classList.add('hidden');
             btn_ferment.addEventListener('click',(e)=>{
-               user.classList.add('hidden');
+                console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
+                
+                user.style.display="none";
             })
-            // switch(role){
-            //     case 1:role==="Réception";
-
-            //     break;
-            //     case 2:role==="Salle des serveurs";
-
-            //     break;
-            //     case 3:role==="Salle de sécurité";
-
-            //     break;
-            //     case 4:role==="Manager";
-
-            //     break;
-            //     case 5:role==="Nettoyage";
-
-            //     break;
-            //     default:
+           
 
 
-            // }
+
+
+
+
+
+
+
+
+
+
 
                 InfoContinaire.classList.add('hidden');
             });
