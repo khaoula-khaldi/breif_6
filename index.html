@@ -15,10 +15,65 @@
         background-repeat: no-repeat;
         height: 100vh;
     }
+    @media (max-width: 750px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-panel {
+        width: 100%;
+    }
+
+    .right-panel {
+        min-height: 300px;
+        transform: rotate(90deg);
+        margin-top: 10em;
+    }
+
+    #zone-employees {
+        transform: rotate(-90deg);
+    }
+
+    .selected {
+        transform: rotate(-90deg);
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    .selected:hover {
+        transform: rotate(-90deg) translateY(-15px);
+        transition: transform 0.3s ease-in;
+    }
+    .assignedEmpls{
+        height: 6rem;
+    }
+    .right-panel img{
+        min-height: 100%;
+        height: 100%;
+        width: 700px;
+    }
+    .rooms-container{
+        min-height: 100%;
+        min-width: 700px;
+    }
+}
+@media (max-width: 430px) {
+    .right-panel {
+        min-height: 250px;
+    }
+    .right-panel img{
+        /* min-height: 230px; */
+        height: 200px;
+        width: 400px;
+    }
+    .rooms-container{
+        min-height: 200px;
+        min-width: 400px;
+    }
+}
 </style>
 
 <body class="m-10 bg-gray-200 ">
-<div id="EmployeAffiche" class="bg-white overflow-y-auto border border-solide border-balck fixed mt-40 hidden w[100%]"></div>
+<div id="EmployeAffiche" class=" overflow-y-auto border border-solide border-balck fixed mt-40 hidden w[100%]"></div>
     <div class="flex flex-col md:grid md:grid-cols-[1fr_3fr]">
 
         <div id="cotes_employe" class="m-5 ">
