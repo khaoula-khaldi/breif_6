@@ -161,270 +161,281 @@ afficherEmployees.addEventListener('click', (e) => {
 
 //AJOUTER un employe dans un chambre
 const InfoContinaire = document.getElementById('InfoContinaire');
-let sectionImage = document.getElementById("sectionImage");
-let btn_conference = document.getElementById("btn_conference");
+const btn_conference = document.getElementById("btn_conference");
 
-    btn_conference.addEventListener('click', (e) => {
-        InfoContinaire.classList.remove('hidden');
-        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
-        utilisateur.forEach((user, index) => {
-            InfoContinaire.innerHTML += `
-            <div class="empDiv rounded-2xl p-2 bg-white ">
-              <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
-                Nom: ${user.nom}<br>
-                role:${user.role}    
-            </div>`;
-        });
-        //btn fermer
-        const effacer = document.createElement("button");
-        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
-        effacer.type = "button";
-        effacer.textContent = "X";
-        InfoContinaire.prepend(effacer);
-        effacer.addEventListener('click', (e) => {
-            InfoContinaire.classList.add('hidden');
-        });
-        // kythat employer fi chambre ta3O 
-        const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
-        allEmpDiv.forEach((div, i) => {
-            div.addEventListener('click', () => {
-                conference.innerHTML += `
-                <div class="user_conference p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre  ">
-                     <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">    
-                    <button class="btn_ferment_conference p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-centre items-centre absolute top-1 right-2">X</button>
-                    <p class="text-sm"> ${utilisateur[i].nom}</p>
-                </div>
-            `;
-                InfoContinaire.classList.add('hidden');
-                btn_ferment.addEventListener('click', (e) => {
-                    user.style.display = "none";
-                })
+btn_conference.addEventListener('click', () => {
+    InfoContinaire.classList.remove('hidden');
+    InfoContinaire.innerHTML = ""; // vide la zone
 
-                InfoContinaire.classList.add('hidden');
-            });
-        });
-
+    // Créer le bouton fermer
+    const effacer = document.createElement("button");
+    effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white absolute top-2 right-2";
+    effacer.textContent = "X";
+    InfoContinaire.appendChild(effacer);
+    effacer.addEventListener('click', () => {
+        InfoContinaire.classList.add('hidden');
     });
 
-    let btn_securite = document.getElementById("btn_securite");
+    // Afficher tous les utilisateurs
+    utilisateur.forEach((user, index) => {
+        const empDiv = document.createElement('div');
+        empDiv.className = "empDiv rounded-2xl p-2 bg-white cursor-pointer mb-2";
 
-    btn_securite.addEventListener('click', (e) => {
-        InfoContinaire.classList.remove('hidden');
-        InfoContinaire.innerHTML += ""; // na9i zone bach matsaybch double
-        utilisateur.forEach((user, index) => {
-            InfoContinaire.innerHTML += `
-            <div class="empDiv rounded-2xl p-2 bg-white ">
+        empDiv.innerHTML = `
             <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
-                Nom: ${user.nom}<br>
-                role:${user.role}    
-            </div>`;
-        });
-        //btn fermer
-        const effacer = document.createElement("button");
-        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
-        effacer.type = "button";
-        effacer.textContent = "X";
-        InfoContinaire.prepend(effacer);
-        effacer.addEventListener('click', (e) => {
-            InfoContinaire.classList.add('hidden');
-        });
-        // kythat employer fi chambre ta3O 
-        const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
-        allEmpDiv.forEach((div, i) => {
-            div.addEventListener('click', () => {
-                securite.innerHTML += `
-                <div class="user p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre ">
-                    <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">  
-                    <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
-                    <p class="text-sm"> ${utilisateur[i].nom}</p>
-                </div>
-            `;
-             InfoContinaire.classList.add('hidden');
-                btn_ferment.addEventListener('click', (e) => {
-                    user.style.display = "none";
-                })
+            Nom: ${user.nom}<br>
+            Role: ${user.role}
+        `;
 
-                InfoContinaire.classList.add('hidden');
+        InfoContinaire.appendChild(empDiv);
+
+        // Au clic sur l'utilisateur, l'ajouter dans la chambre
+        empDiv.addEventListener('click', () => {
+            const userDiv = document.createElement('div');
+            userDiv.className = "user_conference p-3 bg-white rounded-xl absolute flex flex-col justify-center items-center";
+
+            userDiv.innerHTML = `
+                <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+                <button class="btn_ferment_conference p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
+                <p class="text-sm">${user.nom}</p>
+            `;
+
+            conference.appendChild(userDiv);
+            InfoContinaire.classList.add('hidden');
+
+            // Sélectionner le bouton X et le faire fonctionner
+            const btnFermer = userDiv.querySelector('.btn_ferment_conference');
+            btnFermer.addEventListener('click', () => {
+                userDiv.remove();
             });
         });
+    });
+});
 
+
+
+let btn_securite = document.getElementById("btn_securite");
+
+btn_securite.addEventListener('click', () => {
+    InfoContinaire.classList.remove('hidden');
+    InfoContinaire.innerHTML = "";
+
+    // Bouton fermer
+    const effacer = document.createElement("button");
+    effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white absolute top-2 right-2";
+    effacer.textContent = "X";
+    InfoContinaire.appendChild(effacer);
+    effacer.addEventListener('click', () => {
+        InfoContinaire.classList.add('hidden');
     });
 
+    // Ajouter les utilisateurs
+    utilisateur.forEach((user) => {
+        const empDiv = document.createElement('div');
+        empDiv.className = "empDiv rounded-2xl p-2 bg-white cursor-pointer mb-2";
+        empDiv.innerHTML = `
+            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+            Nom: ${user.nom}<br>
+            Role: ${user.role}
+        `;
+        InfoContinaire.appendChild(empDiv);
+
+        // Au clic sur l'utilisateur, l'ajouter dans la chambre "conference"
+        empDiv.addEventListener('click', () => {
+            const userDiv = document.createElement('div');
+            userDiv.className = "user_conference p-3 bg-white rounded-xl absolute flex flex-col justify-center items-center";
+            userDiv.innerHTML = `
+                <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+                <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
+                <p class="text-sm">${user.nom}</p>
+            `;
+            securite.appendChild(userDiv);
+            InfoContinaire.classList.add('hidden');
+
+            // Fermer le div ajouté
+            const btnFermer = userDiv.querySelector('.btn_ferment');
+            btnFermer.addEventListener('click', () => {
+                userDiv.remove();
+            });
+        });
+    });
+});
 
       let btn_serveurs = document.getElementById("btn_serveurs");
 
-    btn_serveurs.addEventListener('click', (e) => {
-        InfoContinaire.classList.remove('hidden');
-        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
-        utilisateur.forEach((user, index) => {
-            InfoContinaire.innerHTML += `
-            <div class="empDiv rounded-2xl p-2 bg-white ">
-            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
-                Nom: ${user.nom}<br>
-                role:${user.role}    
-            </div>`;
-        });
-        //btn fermer
-        const effacer = document.createElement("button");
-        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
-        effacer.type = "button";
-        effacer.textContent = "X";
-        InfoContinaire.prepend(effacer);
-        effacer.addEventListener('click', (e) => {
-            InfoContinaire.classList.add('hidden');
-        });
-        // kythat employer fi chambre ta3O 
-        const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
-        allEmpDiv.forEach((div, i) => {
-            div.addEventListener('click', () => {
-                serveurs.innerHTML += `
-                <div class="user p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre ">
-                    <div class="w-10 h-10 rounded-full object-cover border mb-2"></div>
-                    <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
-                    <p class="text-sm"> ${utilisateur[i].nom}</p>
-                </div>
-            `;
-            InfoContinaire.classList.add('hidden');
-                btn_ferment.addEventListener('click', (e) => {
-                    user.style.display = "none";
-                })
+btn_serveurs.addEventListener('click', () => {
+    InfoContinaire.classList.remove('hidden');
+    InfoContinaire.innerHTML = "";
 
-                InfoContinaire.classList.add('hidden');
-            });
-        });
-
+    const effacer = document.createElement("button");
+    effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white absolute top-2 right-2";
+    effacer.textContent = "X";
+    InfoContinaire.appendChild(effacer);
+    effacer.addEventListener('click', () => {
+        InfoContinaire.classList.add('hidden');
     });
 
-
-
-    let btn_Reception = document.getElementById("btn_Reception");
-
-    btn_Reception.addEventListener('click', (e) => {
-        InfoContinaire.classList.remove('hidden');
-        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
-        utilisateur.forEach((user, index) => {
-            InfoContinaire.innerHTML += `
-            <div class="empDiv rounded-2xl p-2 bg-white ">
+    utilisateur.forEach((user) => {
+        const empDiv = document.createElement('div');
+        empDiv.className = "empDiv rounded-2xl p-2 bg-white cursor-pointer mb-2";
+        empDiv.innerHTML = `
             <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
-                Nom: ${user.nom}<br>
-                role:${user.role}    
-            </div>`;
-        });
-        //btn fermer
-        const effacer = document.createElement("button");
-        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
-        effacer.type = "button";
-        effacer.textContent = "X";
-        InfoContinaire.prepend(effacer);
-        effacer.addEventListener('click', (e) => {
-            InfoContinaire.classList.add('hidden');
-        });
-        // kythat employer fi chambre ta3O 
-        const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
-        allEmpDiv.forEach((div, i) => {
-            div.addEventListener('click', () => {
-                Reception.innerHTML += `
-                <div class="user p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre ">
-                    <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">  
-                    <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
-                    <p class="text-sm"> ${utilisateur[i].nom}</p>
-                </div>
-            `;
-            InfoContinaire.classList.add('hidden');
-                btn_ferment.addEventListener('click', (e) => {
-                    user.style.display = "none";
-                })
+            Nom: ${user.nom}<br>
+            Role: ${user.role}
+        `;
+        InfoContinaire.appendChild(empDiv);
 
-                InfoContinaire.classList.add('hidden');
+        empDiv.addEventListener('click', () => {
+            const userDiv = document.createElement('div');
+            userDiv.className = "user_conference p-3 bg-white rounded-xl absolute flex flex-col justify-center items-center";
+            userDiv.innerHTML = `
+                <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+                <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
+                <p class="text-sm">${user.nom}</p>
+            `;
+            serveurs.appendChild(userDiv);
+            InfoContinaire.classList.add('hidden');
+
+            const btnFermer = userDiv.querySelector('.btn_ferment');
+            btnFermer.addEventListener('click', () => {
+                userDiv.remove();
             });
         });
+    });
+});
 
+
+   let btn_Reception = document.getElementById("btn_Reception");
+
+btn_Reception.addEventListener('click', () => {
+    InfoContinaire.classList.remove('hidden');
+    InfoContinaire.innerHTML = "";
+
+    const effacer = document.createElement("button");
+    effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white absolute top-2 right-2";
+    effacer.textContent = "X";
+    InfoContinaire.appendChild(effacer);
+    effacer.addEventListener('click', () => {
+        InfoContinaire.classList.add('hidden');
     });
 
-
-    let btn_personnel = document.getElementById("btn_personnel");
-
-    btn_personnel.addEventListener('click', (e) => {
-        InfoContinaire.classList.remove('hidden');
-        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
-        utilisateur.forEach((user, index) => {
-            InfoContinaire.innerHTML += `
-            <div class="empDiv rounded-2xl p-2 bg-white ">
+    utilisateur.forEach((user) => {
+        const empDiv = document.createElement('div');
+        empDiv.className = "empDiv rounded-2xl p-2 bg-white cursor-pointer mb-2";
+        empDiv.innerHTML = `
             <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
-                Nom: ${user.nom}<br>
-                role:${user.role}    
-            </div>`;
-        });
-        //btn fermer
-        const effacer = document.createElement("button");
-        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
-        effacer.type = "button";
-        effacer.textContent = "X";
-        InfoContinaire.prepend(effacer);
-        effacer.addEventListener('click', (e) => {
-            InfoContinaire.classList.add('hidden');
-        });
-        // kythat employer fi chambre ta3O 
-        const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
-        allEmpDiv.forEach((div, i) => {
-            div.addEventListener('click', () => {
-                personnel.innerHTML += `
-                <div class="user p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre ">
-                    <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">  
-                    <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
-                    <p class="text-sm"> ${utilisateur[i].nom}</p>
-                </div>
+            Nom: ${user.nom}<br>
+            Role: ${user.role}
+        `;
+        InfoContinaire.appendChild(empDiv);
+
+        empDiv.addEventListener('click', () => {
+            const userDiv = document.createElement('div');
+            userDiv.className = "user_conference p-3 bg-white rounded-xl absolute flex flex-col justify-center items-center";
+            userDiv.innerHTML = `
+                <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+                <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
+                <p class="text-sm">${user.nom}</p>
             `;
-             InfoContinaire.classList.add('hidden');
+            Reception.appendChild(userDiv);
+            InfoContinaire.classList.add('hidden');
+
+            const btnFermer = userDiv.querySelector('.btn_ferment');
+            btnFermer.addEventListener('click', () => {
+                userDiv.remove();
             });
         });
-
     });
+});
+
+        
+   let btn_personnel = document.getElementById("btn_personnel");
+
+btn_personnel.addEventListener('click', () => {
+    InfoContinaire.classList.remove('hidden');
+    InfoContinaire.innerHTML = "";
+
+    const effacer = document.createElement("button");
+    effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white absolute top-2 right-2";
+    effacer.textContent = "X";
+    InfoContinaire.appendChild(effacer);
+    effacer.addEventListener('click', () => {
+        InfoContinaire.classList.add('hidden');
+    });
+
+    utilisateur.forEach((user) => {
+        const empDiv = document.createElement('div');
+        empDiv.className = "empDiv rounded-2xl p-2 bg-white cursor-pointer mb-2";
+        empDiv.innerHTML = `
+            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+            Nom: ${user.nom}<br>
+            Role: ${user.role}
+        `;
+        InfoContinaire.appendChild(empDiv);
+
+        empDiv.addEventListener('click', () => {
+            const userDiv = document.createElement('div');
+            userDiv.className = "user p-3 bg-white rounded-xl absolute flex flex-col justify-center items-center";
+            userDiv.innerHTML = `
+                <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+                <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
+                <p class="text-sm">${user.nom}</p>
+            `;
+            personnel.appendChild(userDiv); // cible 'personnel'
+            InfoContinaire.classList.add('hidden');
+
+            const btnFermer = userDiv.querySelector('.btn_ferment');
+            btnFermer.addEventListener('click', () => {
+                userDiv.remove();
+            });
+        });
+    });
+});
+
 
 
 let btn_archives = document.getElementById("btn_archives");
 
-    btn_archives.addEventListener('click', (e) => {
-        InfoContinaire.classList.remove('hidden');
-        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
-        utilisateur.forEach((user, index) => {
-            InfoContinaire.innerHTML += `
-            <div class="empDiv rounded-2xl p-2 bg-white ">
-            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
-                Nom: ${user.nom}<br>
-                role:${user.role}    
-            </div>`;
-        });
-        //btn fermer
-        const effacer = document.createElement("button");
-        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
-        effacer.type = "button";
-        effacer.textContent = "X";
-        InfoContinaire.prepend(effacer);
-        effacer.addEventListener('click', (e) => {
-            InfoContinaire.classList.add('hidden');
-        });
-        // kythat employer fi chambre ta3O 
-        const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
-        allEmpDiv.forEach((div, i) => {
-            div.addEventListener('click', () => {
-                archives.innerHTML += `
-                <div class="user p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre ">
-                    <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">  
-                    <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
-                    <p class="text-sm"> ${utilisateur[i].nom}</p>   
-                </div>
-            `;
-            InfoContinaire.classList.add('hidden');
-                btn_ferment.addEventListener('click', (e) => {
-                    user.style.display = "none";
-                })
+btn_archives.addEventListener('click', () => {
+    InfoContinaire.classList.remove('hidden');
+    InfoContinaire.innerHTML = "";
 
-                InfoContinaire.classList.add('hidden');
+    const effacer = document.createElement("button");
+    effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white absolute top-2 right-2";
+    effacer.textContent = "X";
+    InfoContinaire.appendChild(effacer);
+    effacer.addEventListener('click', () => {
+        InfoContinaire.classList.add('hidden');
+    });
+
+    utilisateur.forEach((user) => {
+        const empDiv = document.createElement('div');
+        empDiv.className = "empDiv rounded-2xl p-2 bg-white cursor-pointer mb-2";
+        empDiv.innerHTML = `
+            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+            Nom: ${user.nom}<br>
+            Role: ${user.role}
+        `;
+        InfoContinaire.appendChild(empDiv);
+
+        empDiv.addEventListener('click', () => {
+            const userDiv = document.createElement('div');
+            userDiv.className = "user_conference p-3 bg-white rounded-xl absolute flex flex-col justify-center items-center";
+            userDiv.innerHTML = `
+                <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+                <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
+                <p class="text-sm">${user.nom}</p>
+            `;
+            archives.appendChild(userDiv);
+            InfoContinaire.classList.add('hidden');
+
+            const btnFermer = userDiv.querySelector('.btn_ferment');
+            btnFermer.addEventListener('click', () => {
+                userDiv.remove();
             });
         });
-
     });
+});
 
 
 
