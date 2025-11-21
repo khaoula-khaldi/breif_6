@@ -15,7 +15,6 @@
         background-repeat: no-repeat;
         height: 100vh;
     }
-
 </style>
 
 <body class="m-10 bg-gray-200 ">
@@ -26,22 +25,25 @@
 
         <div id="cotes_employe" class="m-5">
             <div>
-                <button id="ajouterEmploye" type="button" class="bg-green-400  px-10 md:px-20 py-2 mb-5 rounded-xl "> + Ajouter un
+                <button id="ajouterEmploye" type="button" class="bg-green-400  px-10 md:px-20 py-2 mb-5 rounded-xl "> +
+                    Ajouter un
                     employé</button>
-                <button id="afficherEmployees" type="button" class="bg-orange-400  px-10 md:px-20 py-2 mb-5 rounded-xl"> Afficher
+                <button id="afficherEmployees" type="button" class="bg-orange-400  px-10 md:px-20 py-2 mb-5 rounded-xl">
+                    Afficher
                     les
                     employés</button>
             </div>
-            <form id="formulaire" class="border border-solide-balck bg-white hidden max-h-[40vh] md:max-h-[70vh] overflow-y-auto">
+            <form id="formulaire"
+                class="border border-solide-balck bg-white hidden max-h-[40vh] md:max-h-[70vh] overflow-y-auto">
                 <div class="m-5">
                     <h1 class="text-lg font-semibold flex justify-center">profil d'employé</h1>
                     <div class="flex flex-col">
                         <div>
                             <label class="font-semibold">Photo :</label><br>
-
                             <div id="container_photo">
-                             <span  class="     "><img src="" alt="No image"></span> 
-                                <input id="url" class="border border-solide-balck rounded px-5 " data-type="url" type="text" placeholder="url">
+                                <img id="photo_user" src="" alt="No image">
+                                <input id="url" class="border border-solide-balck rounded px-5 " data-type="url"
+                                    type="text" placeholder="url">
                             </div><br>
 
                         </div>
@@ -65,14 +67,15 @@
                         <br>
                         <div>
                             <label class="font-semibold">Role :</label><br>
-                            <select id="role" class="border border-solide-balck bg-gray-30">
-                                <option></option>
-                                <option>Réception</option>
-                                <option>Salle des serveurs </option>
-                                <option>Salle de sécurité</option>
-                                <option>Manager </option>
-                                <option>Nettoyage </option>
-                                <option>Autres rôles </option>
+                            <select id="role" class="border border-solid-black bg-gray-30">
+                                <option value="réceptionniste">Réception (Réceptionniste)</option>
+                                <option value="technicien it">Salle des serveurs (Technicien IT)</option>
+                                <option value="agent de sécurité">Salle de sécurité (Agent de sécurité)</option>
+
+                                <!-- Rôles simples -->
+                                <option value="manager">Manager</option>
+                                <option value="nettoyage">Nettoyage</option>
+                                <option value="autre">Autres rôles</option>
                             </select>
                         </div>
                         <br>
@@ -107,9 +110,11 @@
         </div>
 
 
+
         <div id="sectionImage"
             class="card  md:grid grid-cols-[2fr_1fr_2fr_1fr_1fr] md:grid-row-[1fr-1fr-1fr] gap-1 bg-contain bg-cover bg-top bg-no-repeat">
-            <div id="conference" class="text-balck md:col-start-1 font-semibold border border-solide border-red-700 mt-2">
+            <div id="conference"
+                class="text-balck md:col-start-1 font-semibold border border-solide border-red-700 mt-2">
                 📊"Salle de conférence
                 <button id="btn_conference" class="bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
@@ -119,7 +124,8 @@
                 <button id="btn_securite" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
             </div>
             <div id="serveurs"
-                class="text-balck md:col-start-5 bg-red-500/40 font-semibold border border-solide border-red-700  mt-2">🖥️
+                class="text-balck md:col-start-5 bg-red-500/40 font-semibold border border-solide border-red-700  mt-2">
+                🖥️
                 Salle des
                 serveurs
                 <button id="btn_serveurs" class=" bg-blue-700 p-1 rounded-2xl w-10 text-white ">+</button>
@@ -143,7 +149,8 @@
             </div>
         </div>
     </div>
-    <div class=" hidden bg-white w-[25%] rounded-2xl border-solide border-balck fixed top-1/2 left-1/2 -translate-1/2 max-h-[70vh] overflow-y-auto" id="InfoContinaire"></div>
+    <div class=" hidden bg-white w-[25%] rounded-2xl border-solide border-balck fixed top-1/2 left-1/2 -translate-1/2 max-h-[70vh] overflow-y-auto"
+        id="InfoContinaire"></div>
 </body>
 <script src="script.js"></script>
 

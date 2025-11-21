@@ -12,6 +12,12 @@ ajouterEmploye.addEventListener('click', () => {
 let btn_envoyer = document.getElementById('btn_envoyer');
 let dateDu = document.getElementById("dateDu");
 let dateLi = document.getElementById("dateLi");
+//image
+document.getElementById('url').addEventListener('input', (e) => {
+    const img = document.getElementById('photo_user');
+    img.src = e.target.value;
+});
+
 
 let utilisateur = JSON.parse(localStorage.getItem("utilisateur")) || [];
 
@@ -81,6 +87,7 @@ function validationForm() {
         localStorage.setItem("utilisateur", JSON.stringify(utilisateur));
         alert("Utilisateur ajouté !");
         formulaire.reset();
+        document.getElementById('photo_user').src = "";
 
     })
 };
@@ -123,24 +130,23 @@ btnPlus.addEventListener('click', function () {
 
 });
 
-
+let afficherEmployees=document.getElementById("afficherEmployees");
 afficherEmployees.addEventListener('click', (e) => {
     formulaire.classList.add('hidden');
-
-    // Kola click → nmas7 lzone
-    EmployeAffiche.innerHTML = "";
-
-    // n'affichi leh
+    EmployeAffiche.innerHTML += "";
     EmployeAffiche.classList.remove('hidden');
 
+
     // n3awwed nbni contenu jdid
-    utilisateur.forEach((user, index) => {
-        EmployeAffiche.innerHTML += `
-       <br> <div class="rounded-2xl p-2 bg-white mt-4 ">
-        <div class="w-20 h-20 rounded-full object-cover border mb-2"></div>
-            Nom: ${user.nom}<br>
-            role:${user.role}    
-        </div>`;
+  utilisateur.forEach((user, index) => {
+        const div = document.createElement('div');
+        div.className = "rounded-2xl p-2 bg-white mt-10 relative  h-[10rem]";
+        div.innerHTML = `
+            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+            <p>Nom: ${user.nom}</p>
+            <p>Role: ${user.role}</p>
+        `;
+        EmployeAffiche.appendChild(div);
     });
     //btn fermer
     const effacer = document.createElement("button");
@@ -164,7 +170,7 @@ let btn_conference = document.getElementById("btn_conference");
         utilisateur.forEach((user, index) => {
             InfoContinaire.innerHTML += `
             <div class="empDiv rounded-2xl p-2 bg-white ">
-            <div class="w-20 h-20 rounded-full object-cover border mb-2"></div>
+              <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
                 Nom: ${user.nom}<br>
                 role:${user.role}    
             </div>`;
@@ -182,29 +188,17 @@ let btn_conference = document.getElementById("btn_conference");
         const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
         allEmpDiv.forEach((div, i) => {
             div.addEventListener('click', () => {
-                conference.innerHTML = `
+                conference.innerHTML += `
                 <div class="user_conference p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre  ">
-                    <div id="image"><img src="" alt="Non image" ></div>
+                     <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">    
                     <button class="btn_ferment_conference p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-centre items-centre absolute top-1 right-2">X</button>
                     <p class="text-sm"> ${utilisateur[i].nom}</p>
                 </div>
             `;
-             InfoContinaire.classList.add('hidden');
-            btn_ferment_conference.addEventListener('click',(e)=>{
-                user_conference.style.display="none";
-            })
-           
-
-
-
-
-
-
-
-
-
-
-
+                InfoContinaire.classList.add('hidden');
+                btn_ferment.addEventListener('click', (e) => {
+                    user.style.display = "none";
+                })
 
                 InfoContinaire.classList.add('hidden');
             });
@@ -216,11 +210,11 @@ let btn_conference = document.getElementById("btn_conference");
 
     btn_securite.addEventListener('click', (e) => {
         InfoContinaire.classList.remove('hidden');
-        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
+        InfoContinaire.innerHTML += ""; // na9i zone bach matsaybch double
         utilisateur.forEach((user, index) => {
             InfoContinaire.innerHTML += `
             <div class="empDiv rounded-2xl p-2 bg-white ">
-            <div class="w-20 h-20 rounded-full object-cover border mb-2"></div>
+            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
                 Nom: ${user.nom}<br>
                 role:${user.role}    
             </div>`;
@@ -238,30 +232,17 @@ let btn_conference = document.getElementById("btn_conference");
         const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
         allEmpDiv.forEach((div, i) => {
             div.addEventListener('click', () => {
-                securite.innerHTML = `
+                securite.innerHTML += `
                 <div class="user p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre ">
-                    <<div id="image"><img src="" alt="Non image" ></div>
+                    <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">  
                     <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
                     <p class="text-sm"> ${utilisateur[i].nom}</p>
                 </div>
             `;
              InfoContinaire.classList.add('hidden');
-            btn_ferment.addEventListener('click',(e)=>{
-               user.classList.add('hidden');
-            })
-           
-
-
-
-
-
-
-
-
-
-
-
-
+                btn_ferment.addEventListener('click', (e) => {
+                    user.style.display = "none";
+                })
 
                 InfoContinaire.classList.add('hidden');
             });
@@ -278,7 +259,7 @@ let btn_conference = document.getElementById("btn_conference");
         utilisateur.forEach((user, index) => {
             InfoContinaire.innerHTML += `
             <div class="empDiv rounded-2xl p-2 bg-white ">
-            <div class="w-20 h-20 rounded-full object-cover border mb-2"></div>
+            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
                 Nom: ${user.nom}<br>
                 role:${user.role}    
             </div>`;
@@ -296,30 +277,17 @@ let btn_conference = document.getElementById("btn_conference");
         const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
         allEmpDiv.forEach((div, i) => {
             div.addEventListener('click', () => {
-                serveurs.innerHTML = `
+                serveurs.innerHTML += `
                 <div class="user p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre ">
                     <div class="w-10 h-10 rounded-full object-cover border mb-2"></div>
                     <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
                     <p class="text-sm"> ${utilisateur[i].nom}</p>
                 </div>
             `;
-             InfoContinaire.classList.add('hidden');
-            btn_ferment.addEventListener('click',(e)=>{
-               user.classList.add('hidden');
-            })
-           
-
-
-
-
-
-
-
-
-
-
-
-
+            InfoContinaire.classList.add('hidden');
+                btn_ferment.addEventListener('click', (e) => {
+                    user.style.display = "none";
+                })
 
                 InfoContinaire.classList.add('hidden');
             });
@@ -337,7 +305,7 @@ let btn_conference = document.getElementById("btn_conference");
         utilisateur.forEach((user, index) => {
             InfoContinaire.innerHTML += `
             <div class="empDiv rounded-2xl p-2 bg-white ">
-            <div class="w-20 h-20 rounded-full object-cover border mb-2"></div>
+            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
                 Nom: ${user.nom}<br>
                 role:${user.role}    
             </div>`;
@@ -355,30 +323,17 @@ let btn_conference = document.getElementById("btn_conference");
         const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
         allEmpDiv.forEach((div, i) => {
             div.addEventListener('click', () => {
-                Reception.innerHTML = `
+                Reception.innerHTML += `
                 <div class="user p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre ">
-                    <div id="image"><img src="" alt="Non image" ></div>
+                    <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">  
                     <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
                     <p class="text-sm"> ${utilisateur[i].nom}</p>
                 </div>
             `;
-             InfoContinaire.classList.add('hidden');
-            btn_ferment.addEventListener('click',(e)=>{
-               user.classList.add('hidden');
-            })
-           
-
-
-
-
-
-
-
-
-
-
-
-
+            InfoContinaire.classList.add('hidden');
+                btn_ferment.addEventListener('click', (e) => {
+                    user.style.display = "none";
+                })
 
                 InfoContinaire.classList.add('hidden');
             });
@@ -395,7 +350,7 @@ let btn_conference = document.getElementById("btn_conference");
         utilisateur.forEach((user, index) => {
             InfoContinaire.innerHTML += `
             <div class="empDiv rounded-2xl p-2 bg-white ">
-            <div class="w-20 h-20 rounded-full object-cover border mb-2"></div>
+            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
                 Nom: ${user.nom}<br>
                 role:${user.role}    
             </div>`;
@@ -413,32 +368,14 @@ let btn_conference = document.getElementById("btn_conference");
         const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
         allEmpDiv.forEach((div, i) => {
             div.addEventListener('click', () => {
-                personnel.innerHTML = `
+                personnel.innerHTML += `
                 <div class="user p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre ">
-                    <div id="image"><img src="" alt="Non image" ></div>
+                    <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">  
                     <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
                     <p class="text-sm"> ${utilisateur[i].nom}</p>
                 </div>
             `;
              InfoContinaire.classList.add('hidden');
-            btn_ferment.addEventListener('click',(e)=>{
-               user.classList.add('hidden');
-            })
-           
-
-
-
-
-
-
-
-
-
-
-
-
-
-                InfoContinaire.classList.add('hidden');
             });
         });
 
@@ -453,7 +390,7 @@ let btn_archives = document.getElementById("btn_archives");
         utilisateur.forEach((user, index) => {
             InfoContinaire.innerHTML += `
             <div class="empDiv rounded-2xl p-2 bg-white ">
-            <div class="w-20 h-20 rounded-full object-cover border mb-2"></div>
+            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
                 Nom: ${user.nom}<br>
                 role:${user.role}    
             </div>`;
@@ -471,32 +408,17 @@ let btn_archives = document.getElementById("btn_archives");
         const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
         allEmpDiv.forEach((div, i) => {
             div.addEventListener('click', () => {
-                archives.innerHTML = `
+                archives.innerHTML += `
                 <div class="user p-3 bg-white rounded-xl absolute flex flex-col justify-centre items-centre ">
-                    <div id="image"><img src="" alt="Non image" ></div>
+                    <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">  
                     <button class="btn_ferment p-2 bg-red-700 w-7.5 h-9 border rounded-3xl text-white flex justify-end absolute top-1 right-2">X</button>
                     <p class="text-sm"> ${utilisateur[i].nom}</p>   
                 </div>
             `;
-             InfoContinaire.classList.add('hidden');
-            btn_ferment.addEventListener('click',(e)=>{
-                console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
-                
-                user.style.display="none";
-            })
-           
-
-
-
-
-
-
-
-
-
-
-
-
+            InfoContinaire.classList.add('hidden');
+                btn_ferment.addEventListener('click', (e) => {
+                    user.style.display = "none";
+                })
 
                 InfoContinaire.classList.add('hidden');
             });
