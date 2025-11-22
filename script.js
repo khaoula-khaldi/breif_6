@@ -27,12 +27,13 @@ function validationForm() {
             telephone: document.getElementById("telephone").value.trim(),
             experiences: document.getElementById("Experiences").value.trim(),
             role: document.getElementById("role").value.trim(),
-            url: document.getElementById("url").value.trim()
+            url: document.getElementById("url").value.trim(),
+            inputEXP: document.querySelectorAll(".experience-input").value.trim()
 
         };
 
         // validation des champs vides
-        if (!objetInfo.nom || !objetInfo.email || !objetInfo.telephone || !objetInfo.experiences || !objetInfo.role || !objetInfo.url) {
+        if (!objetInfo.nom || !objetInfo.email || !objetInfo.telephone || !objetInfo.experiences || !objetInfo.role || !objetInfo.url || !objetInfo.inputEXP) {
             alert("Remplir tous les champs !!");
             return;
         }
@@ -130,7 +131,6 @@ function afficherUtilisateurs() {
     const div = document.getElementById("affichageData");
     const data = localStorage.getItem("utilisateur");
     let utilisateurData = data ? JSON.parse(data) : [];
-
     div.innerHTML = ""; // vider le div
 
     if (utilisateurData.length === 0) {
@@ -138,7 +138,7 @@ function afficherUtilisateurs() {
     } else {
         utilisateurData.forEach((user, index) => {
             div.innerHTML += `
-                <div id="employe" class="block">
+                <div class="employe block">
                   <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
                   <p>Nom: ${user.nom}</p>
                   <p>Role: ${user.role}</p>
@@ -147,61 +147,87 @@ function afficherUtilisateurs() {
         });
     }
 }
+function detalDeChaqueUser() {
+    let employes = document.querySelectorAll(".employe");
+    let toutlesinfo = document.getElementById("toutlesinfo");
 
+    employes.forEach((employe, index) => {
+        employe.addEventListener('click', () => {
+            const user = utilisateur[index];
+            toutlesinfo.style.display = 'block';
+            toutlesinfo.innerHTML = `
+        <div class="m-10">
+                <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+                <p>Nom: ${user.nom}</p>
+                <p>Role: ${user.role}</p>
+                <p>Téléphone: ${user.telephone}</p>
+                <p>Expériences: ${user.experiences}</p>
+                <p>Autres experience : ${user.inputEXP}</p>
+                <button id="fermerInfoTout" class=" p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
+        </div>  
+        `;
+            let fermerInfoTout = document.getElementById("fermerInfoTout");
+            fermerInfoTout.addEventListener('click', (e) => {
+                toutlesinfo.style.display = 'none';
+            })
+        });
+    });
 
+}
+detalDeChaqueUser();
 
-//AJOUTER un employe dans un chambre
+// ==========================
+// AJOUTER un employé dans la zone Conférence
+// ==========================
 function ajoutePremierZone() {
-    const limiteconference = 5; // maximum d'employés
-    let countconference = 0;     // compteur actuel d'employés
-    const rolesAutorises = ["manager", "reception", "serveur"];
+    const limiteconference = 5;
+    let countconference = 0;
+    const rolesAutorises = ["manager", "reception", "nettoyage", "autres"];
     const InfoContinaire = document.getElementById('InfoContinaire');
-    let sectionImage = document.getElementById("sectionImage");
     let btn_conference = document.getElementById("btn_conference");
 
-    btn_conference.addEventListener('click', (e) => {
+    btn_conference.addEventListener('click', () => {
         InfoContinaire.classList.remove('hidden');
-        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
-        utilisateur.forEach((user, index) => {
+        InfoContinaire.innerHTML = "";
+
+        utilisateur.forEach((user) => {
             InfoContinaire.innerHTML += `
-            <div class="empDiv rounded-2xl p-2 bg-white ">
-            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
-            <p>Nom: ${user.nom}</p>
-            <p>Role: ${user.role}</p>
-            </div>`;
+                <div class="empDiv rounded-2xl p-2 bg-white">
+                    <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+                    <p>Nom: ${user.nom}</p>
+                    <p>Role: ${user.role}</p>
+                </div>
+            `;
         });
-        //btn fermer
+
+        // Bouton fermer
         const effacer = document.createElement("button");
-        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
-        effacer.type = "button";
+        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white absolute top-2 right-2";
         effacer.textContent = "X";
         InfoContinaire.prepend(effacer);
-        effacer.addEventListener('click', (e) => {
-            InfoContinaire.classList.add('hidden');
-        });
-        // kythat employer fi chambre ta3O 
+        effacer.addEventListener('click', () => InfoContinaire.classList.add('hidden'));
+
+        // Ajouter listener pour chaque employé
         const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
         allEmpDiv.forEach((div, i) => {
+            const user = utilisateur[i]; // capture le user directement
             div.addEventListener('click', () => {
-                const userRole = utilisateur[i].role;
-                if (!rolesAutorises.includes(userRole)) {
+                if (!rolesAutorises.includes(user.role)) {
                     alert("Cet employé n'a pas le droit d'entrer dans cette zone !");
                     return;
                 }
-
                 if (countconference >= limiteconference) {
                     alert("Limite atteinte pour cette zone !");
-                    return; // stop ici si trop d'employés
+                    return;
                 }
                 const userDiv = document.createElement("div");
                 userDiv.className = "user p-3 bg-white rounded-xl relative";
                 userDiv.innerHTML = `
-                        <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
-                        <img src="${utilisateur[i].url}" class="w-16 h-16 rounded-full">
-                        <p>${utilisateur[i].nom}</p>
-                        <p>${utilisateur[i].role}</p>
-                    `;
-
+                    <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
+                    <img src="${user.url}" class="w-16 h-16 rounded-full">
+                    <p>${user.nom}</p>
+                    <p>${user.role}</p>
+                `;
                 conference.appendChild(userDiv);
                 countconference++;
                 InfoContinaire.classList.add('hidden');
@@ -212,65 +238,62 @@ function ajoutePremierZone() {
                     countconference--;
                 });
             });
-
         });
-
     });
 }
 ajoutePremierZone();
 
 
-
-//AJOUTER un employe dans un chambre
+// ==========================
+// Zone Sécurité
+// ==========================
 function ajouteDeusZone() {
-    const limiteSecurite = 3; // maximum d'employés
-    let countSecurite = 0;     // compteur actuel d'employés
-    const rolesAutorises = ["manager", "reception", "serveur"];
+    const limiteSecurite = 3;
+    let countSecurite = 0;
+    const rolesAutorises = ["salle_securite", "manager", "nettoyage", "autres"];
     const InfoContinaire = document.getElementById('InfoContinaire');
-    let sectionImage = document.getElementById("sectionImage");
     let btn_securite = document.getElementById("btn_securite");
 
-    btn_securite.addEventListener('click', (e) => {
+    btn_securite.addEventListener('click', () => {
         InfoContinaire.classList.remove('hidden');
-        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
-        utilisateur.forEach((user, index) => {
+        InfoContinaire.innerHTML = "";
+
+        utilisateur.forEach((user) => {
             InfoContinaire.innerHTML += `
-            <div class="empDiv rounded-2xl p-2 bg-white ">
-            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
-            <p>Nom: ${user.nom}</p>
-            <p>Role: ${user.role}</p>
-            </div>`;
+                <div class="empDiv rounded-2xl p-2 bg-white">
+                    <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+                    <p>Nom: ${user.nom}</p>
+                    <p>Role: ${user.role}</p>
+                </div>
+            `;
         });
-        //btn fermer
+
         const effacer = document.createElement("button");
-        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
-        effacer.type = "button";
+        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white absolute top-2 right-2";
         effacer.textContent = "X";
         InfoContinaire.prepend(effacer);
-        effacer.addEventListener('click', (e) => {
-            InfoContinaire.classList.add('hidden');
-        });
-        // kythat employer fi chambre ta3O 
+        effacer.addEventListener('click', () => InfoContinaire.classList.add('hidden'));
+
         const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
         allEmpDiv.forEach((div, i) => {
+            const user = utilisateur[i];
             div.addEventListener('click', () => {
-                if (!rolesAutorises.includes(userRole)) {
+                if (!rolesAutorises.includes(user.role)) {
                     alert("Cet employé n'a pas le droit d'entrer dans cette zone !");
                     return;
                 }
                 if (countSecurite >= limiteSecurite) {
                     alert("Limite atteinte pour cette zone !");
-                    return; // stop ici si trop d'employés
+                    return;
                 }
                 const userDiv = document.createElement("div");
                 userDiv.className = "user p-3 bg-white rounded-xl relative";
                 userDiv.innerHTML = `
-                        <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
-                        <img src="${utilisateur[i].url}" class="w-16 h-16 rounded-full">
-                        <p>${utilisateur[i].nom}</p>
-                        <p>${utilisateur[i].role}</p>
-                    `;
-
+                    <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
+                    <img src="${user.url}" class="w-16 h-16 rounded-full">
+                    <p>${user.nom}</p>
+                    <p>${user.role}</p>
+                `;
                 securite.appendChild(userDiv);
                 countSecurite++;
                 InfoContinaire.classList.add('hidden');
@@ -281,65 +304,62 @@ function ajouteDeusZone() {
                     countSecurite--;
                 });
             });
-
         });
-
     });
 }
 ajouteDeusZone();
 
 
-
-//AJOUTER un employe dans un chambre
+// ==========================
+// Zone Serveurs
+// ==========================
 function ajouteTroiZone() {
-    const limiteserveurs = 3; // maximum d'employés
-    let countSecurite = 0;     // compteur actuel d'employés
-    const rolesAutorises = ["manager", "reception", "serveur"];
+    const limiteserveurs = 3;
+    let countserveurs = 0;
+    const rolesAutorises = ["salle_serveurs", "manager", "nettoyage", "autres"];
     const InfoContinaire = document.getElementById('InfoContinaire');
-    let sectionImage = document.getElementById("sectionImage");
     let btn_serveurs = document.getElementById("btn_serveurs");
 
-    btn_serveurs.addEventListener('click', (e) => {
+    btn_serveurs.addEventListener('click', () => {
         InfoContinaire.classList.remove('hidden');
-        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
-        utilisateur.forEach((user, index) => {
+        InfoContinaire.innerHTML = "";
+
+        utilisateur.forEach((user) => {
             InfoContinaire.innerHTML += `
-            <div class="empDiv rounded-2xl p-2 bg-white ">
-            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
-            <p>Nom: ${user.nom}</p>
-            <p>Role: ${user.role}</p>
-            </div>`;
+                <div class="empDiv rounded-2xl p-2 bg-white">
+                    <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+                    <p>Nom: ${user.nom}</p>
+                    <p>Role: ${user.role}</p>
+                </div>
+            `;
         });
-        //btn fermer
+
         const effacer = document.createElement("button");
-        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
-        effacer.type = "button";
+        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white absolute top-2 right-2";
         effacer.textContent = "X";
         InfoContinaire.prepend(effacer);
-        effacer.addEventListener('click', (e) => {
-            InfoContinaire.classList.add('hidden');
-        });
-        // kythat employer fi chambre ta3O 
+        effacer.addEventListener('click', () => InfoContinaire.classList.add('hidden'));
+
         const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
         allEmpDiv.forEach((div, i) => {
+            const user = utilisateur[i];
             div.addEventListener('click', () => {
-                if (!rolesAutorises.includes(userRole)) {
+                if (!rolesAutorises.includes(user.role)) {
                     alert("Cet employé n'a pas le droit d'entrer dans cette zone !");
                     return;
                 }
                 if (countserveurs >= limiteserveurs) {
                     alert("Limite atteinte pour cette zone !");
-                    return; // stop ici si trop d'employés
+                    return;
                 }
                 const userDiv = document.createElement("div");
                 userDiv.className = "user p-3 bg-white rounded-xl relative";
                 userDiv.innerHTML = `
-                        <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
-                        <img src="${utilisateur[i].url}" class="w-16 h-16 rounded-full">
-                        <p>${utilisateur[i].nom}</p>
-                        <p>${utilisateur[i].role}</p>
-                    `;
-
+                    <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
+                    <img src="${user.url}" class="w-16 h-16 rounded-full">
+                    <p>${user.nom}</p>
+                    <p>${user.role}</p>
+                `;
                 serveurs.appendChild(userDiv);
                 countserveurs++;
                 InfoContinaire.classList.add('hidden');
@@ -350,69 +370,62 @@ function ajouteTroiZone() {
                     countserveurs--;
                 });
             });
-
         });
-
     });
 }
 ajouteTroiZone();
 
 
-
-
-
-
-//AJOUTER un employe dans un chambre
+// ==========================
+// Zone Réception
+// ==========================
 function ajouteQuatreZone() {
-    const limiteReception = 3; // maximum d'employés
-    let countReception = 0;     // compteur actuel d'employés
-    const rolesAutorises = ["manager", "reception", "serveur"];
+    const limiteReception = 3;
+    let countReception = 0;
+    const rolesAutorises = ["reception", "manager", "nettoyage", "autres"];
     const InfoContinaire = document.getElementById('InfoContinaire');
-    let sectionImage = document.getElementById("sectionImage");
     let btn_Reception = document.getElementById("btn_Reception");
 
-    btn_Reception.addEventListener('click', (e) => {
+    btn_Reception.addEventListener('click', () => {
         InfoContinaire.classList.remove('hidden');
-        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
-        utilisateur.forEach((user, index) => {
+        InfoContinaire.innerHTML = "";
+
+        utilisateur.forEach((user) => {
             InfoContinaire.innerHTML += `
-            <div class="empDiv rounded-2xl p-2 bg-white ">
-            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
-            <p>Nom: ${user.nom}</p>
-            <p>Role: ${user.role}</p>
-            </div>`;
+                <div class="empDiv rounded-2xl p-2 bg-white">
+                    <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+                    <p>Nom: ${user.nom}</p>
+                    <p>Role: ${user.role}</p>
+                </div>
+            `;
         });
-        //btn fermer
+
         const effacer = document.createElement("button");
-        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
-        effacer.type = "button";
+        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white absolute top-2 right-2";
         effacer.textContent = "X";
         InfoContinaire.prepend(effacer);
-        effacer.addEventListener('click', (e) => {
-            InfoContinaire.classList.add('hidden');
-        });
-        // kythat employer fi chambre ta3O 
+        effacer.addEventListener('click', () => InfoContinaire.classList.add('hidden'));
+
         const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
         allEmpDiv.forEach((div, i) => {
+            const user = utilisateur[i];
             div.addEventListener('click', () => {
-
-                if (!rolesAutorises.includes(userRole)) {
+                if (!rolesAutorises.includes(user.role)) {
                     alert("Cet employé n'a pas le droit d'entrer dans cette zone !");
                     return;
                 }
                 if (countReception >= limiteReception) {
                     alert("Limite atteinte pour cette zone !");
-                    return; // stop ici si trop d'employés
+                    return;
                 }
                 const userDiv = document.createElement("div");
                 userDiv.className = "user p-3 bg-white rounded-xl relative";
                 userDiv.innerHTML = `
-                        <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
-                        <img src="${utilisateur[i].url}" class="w-16 h-16 rounded-full">
-                        <p>${utilisateur[i].nom}</p>
-                        <p>${utilisateur[i].role}</p>
-                    `;
-
+                    <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
+                    <img src="${user.url}" class="w-16 h-16 rounded-full">
+                    <p>${user.nom}</p>
+                    <p>${user.role}</p>
+                `;
                 Reception.appendChild(userDiv);
                 countReception++;
                 InfoContinaire.classList.add('hidden');
@@ -423,76 +436,62 @@ function ajouteQuatreZone() {
                     countReception--;
                 });
             });
-
         });
-
     });
 }
 ajouteQuatreZone();
 
 
-
-
-
-
-
-
-
-
-
-
-
-//AJOUTER un employe dans un chambre
+// ==========================
+// Zone Personnel
+// ==========================
 function ajouteCinqueZone() {
-    const limitepersonnel = 3; // maximum d'employés
-    let countpersonnel = 0;     // compteur actuel d'employés
-    const rolesAutorises = ["manager", "reception", "serveur"];
+    const limitepersonnel = 3;
+    let countpersonnel = 0;
+    const rolesAutorises = ["manager", "reception", "serveur", "nettoyage", "autres"];
     const InfoContinaire = document.getElementById('InfoContinaire');
-    let sectionImage = document.getElementById("sectionImage");
     let btn_personnel = document.getElementById("btn_personnel");
 
-    btn_personnel.addEventListener('click', (e) => {
+    btn_personnel.addEventListener('click', () => {
         InfoContinaire.classList.remove('hidden');
-        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
-        utilisateur.forEach((user, index) => {
+        InfoContinaire.innerHTML = "";
+
+        utilisateur.forEach((user) => {
             InfoContinaire.innerHTML += `
-            <div class="empDiv rounded-2xl p-2 bg-white ">
-            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
-            <p>Nom: ${user.nom}</p>
-            <p>Role: ${user.role}</p>
-            </div>`;
+                <div class="empDiv rounded-2xl p-2 bg-white">
+                    <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+                    <p>Nom: ${user.nom}</p>
+                    <p>Role: ${user.role}</p>
+                </div>
+            `;
         });
-        //btn fermer
+
         const effacer = document.createElement("button");
-        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
-        effacer.type = "button";
+        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white absolute top-2 right-2";
         effacer.textContent = "X";
         InfoContinaire.prepend(effacer);
-        effacer.addEventListener('click', (e) => {
-            InfoContinaire.classList.add('hidden');
-        });
-        // kythat employer fi chambre ta3O 
+        effacer.addEventListener('click', () => InfoContinaire.classList.add('hidden'));
+
         const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
         allEmpDiv.forEach((div, i) => {
+            const user = utilisateur[i];
             div.addEventListener('click', () => {
-
-                if (!rolesAutorises.includes(userRole)) {
+                if (!rolesAutorises.includes(user.role)) {
                     alert("Cet employé n'a pas le droit d'entrer dans cette zone !");
                     return;
                 }
                 if (countpersonnel >= limitepersonnel) {
                     alert("Limite atteinte pour cette zone !");
-                    return; // stop ici si trop d'employés
+                    return;
                 }
                 const userDiv = document.createElement("div");
                 userDiv.className = "user p-3 bg-white rounded-xl relative";
                 userDiv.innerHTML = `
-                        <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
-                        <img src="${utilisateur[i].url}" class="w-16 h-16 rounded-full">
-                        <p>${utilisateur[i].nom}</p>
-                        <p>${utilisateur[i].role}</p>
-                    `;
-
+                    <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
+                    <img src="${user.url}" class="w-16 h-16 rounded-full">
+                    <p>${user.nom}</p>
+                    <p>${user.role}</p>
+                `;
                 personnel.appendChild(userDiv);
                 countpersonnel++;
                 InfoContinaire.classList.add('hidden');
@@ -503,66 +502,62 @@ function ajouteCinqueZone() {
                     countpersonnel--;
                 });
             });
-
         });
-
     });
 }
 ajouteCinqueZone();
 
 
-
-
-//AJOUTER un employe dans un chambre
+// ==========================
+// Zone Archives
+// ==========================
 function ajouteSiseZone() {
-    const limitearchives = 1; // maximum d'employés
-    let countarchives = 0;     // compteur actuel d'employés
+    const limitearchives = 1;
+    let countarchives = 0;
     const rolesAutorises = ["manager", "reception", "serveur"];
     const InfoContinaire = document.getElementById('InfoContinaire');
-    let sectionImage = document.getElementById("sectionImage");
     let btn_archives = document.getElementById("btn_archives");
 
-    btn_archives.addEventListener('click', (e) => {
+    btn_archives.addEventListener('click', () => {
         InfoContinaire.classList.remove('hidden');
-        InfoContinaire.innerHTML = ""; // na9i zone bach matsaybch double
-        utilisateur.forEach((user, index) => {
+        InfoContinaire.innerHTML = "";
+
+        utilisateur.forEach((user) => {
             InfoContinaire.innerHTML += `
-            <div class="empDiv rounded-2xl p-2 bg-white ">
-            <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
-            <p>Nom: ${user.nom}</p>
-            <p>Role: ${user.role}</p>
-            </div>`;
+                <div class="empDiv rounded-2xl p-2 bg-white">
+                    <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
+                    <p>Nom: ${user.nom}</p>
+                    <p>Role: ${user.role}</p>
+                </div>
+            `;
         });
-        //btn fermer
+
         const effacer = document.createElement("button");
-        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white flex justify-end absolute top-2 right-2";
-        effacer.type = "button";
+        effacer.className = "p-2 bg-red-700 w-7 h-10 border rounded-3xl text-white absolute top-2 right-2";
         effacer.textContent = "X";
         InfoContinaire.prepend(effacer);
-        effacer.addEventListener('click', (e) => {
-            InfoContinaire.classList.add('hidden');
-        });
-        // kythat employer fi chambre ta3O 
+        effacer.addEventListener('click', () => InfoContinaire.classList.add('hidden'));
+
         const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
         allEmpDiv.forEach((div, i) => {
+            const user = utilisateur[i];
             div.addEventListener('click', () => {
-                if (!rolesAutorises.includes(userRole)) {
+                if (!rolesAutorises.includes(user.role)) {
                     alert("Cet employé n'a pas le droit d'entrer dans cette zone !");
                     return;
                 }
                 if (countarchives >= limitearchives) {
                     alert("Limite atteinte pour cette zone !");
-                    return; // stop ici si trop d'employés
+                    return;
                 }
                 const userDiv = document.createElement("div");
                 userDiv.className = "user p-3 bg-white rounded-xl relative";
                 userDiv.innerHTML = `
-                        <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
-                        <img src="${utilisateur[i].url}" class="w-16 h-16 rounded-full">
-                        <p>${utilisateur[i].nom}</p>
-                        <p>${utilisateur[i].role}</p>
-                    `;
-
+                    <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
+                    <img src="${user.url}" class="w-16 h-16 rounded-full">
+                    <p>${user.nom}</p>
+                    <p>${user.role}</p>
+                `;
                 archives.appendChild(userDiv);
                 countarchives++;
                 InfoContinaire.classList.add('hidden');
@@ -573,9 +568,7 @@ function ajouteSiseZone() {
                     countarchives--;
                 });
             });
-
         });
-
     });
 }
 ajouteSiseZone();
