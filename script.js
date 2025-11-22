@@ -5,10 +5,10 @@ let formulaire = document.getElementById('formulaire');
 
 ajouterEmploye.addEventListener('click', () => {
     formulaire.classList.remove('hidden');
-    EmployeAffiche.classList.add('hidden');
-
 });
-
+fermerFormulaire.addEventListener('click', (e) => {
+    formulaire.classList.add('hidden');
+});
 //validation des input des formulaire
 let btn_envoyer = document.getElementById('btn_envoyer');
 let dateDu = document.getElementById("dateDu");
@@ -18,7 +18,7 @@ let utilisateur = JSON.parse(localStorage.getItem("utilisateur")) || [];
 
 function validationForm() {
 
-    formulaire.addEventListener('submit', (e) => {
+    btn_envoyer.addEventListener('btn_envoyer', (e) => {
         e.preventDefault();
 
         const objetInfo = {
@@ -27,13 +27,12 @@ function validationForm() {
             telephone: document.getElementById("telephone").value.trim(),
             experiences: document.getElementById("Experiences").value.trim(),
             role: document.getElementById("role").value.trim(),
-            url: document.getElementById("url").value.trim(),
-            inputEXP: document.querySelectorAll(".experience-input").value.trim()
+            url: document.getElementById("url").value.trim()
 
         };
 
         // validation des champs vides
-        if (!objetInfo.nom || !objetInfo.email || !objetInfo.telephone || !objetInfo.experiences || !objetInfo.role || !objetInfo.url || !objetInfo.inputEXP) {
+        if (!objetInfo.nom || !objetInfo.email || !objetInfo.telephone || !objetInfo.experiences || !objetInfo.role || !objetInfo.url) {
             alert("Remplir tous les champs !!");
             return;
         }
@@ -182,7 +181,7 @@ detalDeChaqueUser();
 function ajoutePremierZone() {
     const limiteconference = 5;
     let countconference = 0;
-    const rolesAutorises = ["manager", "reception", "nettoyage", "autres"];
+    const rolesAutorises = ["manager", "reception", "nettoyage", "autres", "salle_serveurs", "salle_securite"];
     const InfoContinaire = document.getElementById('InfoContinaire');
     let btn_conference = document.getElementById("btn_conference");
 
@@ -221,13 +220,15 @@ function ajoutePremierZone() {
                     return;
                 }
                 const userDiv = document.createElement("div");
-                userDiv.className = "user p-3 bg-white rounded-xl relative";
+                userDiv.className = "user p-3 bg-white rounded-xl ";
                 userDiv.innerHTML = `
                     <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
                     <img src="${user.url}" class="w-16 h-16 rounded-full">
                     <p>${user.nom}</p>
                     <p>${user.role}</p>
                 `;
+                const zone = document.getElementById("conference");
+                zone.style.background = "none";
                 conference.appendChild(userDiv);
                 countconference++;
                 InfoContinaire.classList.add('hidden');
@@ -236,6 +237,7 @@ function ajoutePremierZone() {
                 btnFerment.addEventListener('click', () => {
                     userDiv.remove();
                     countconference--;
+
                 });
             });
         });
@@ -294,6 +296,8 @@ function ajouteDeusZone() {
                     <p>${user.nom}</p>
                     <p>${user.role}</p>
                 `;
+                const zone = document.getElementById("securite");
+                zone.style.background = "none";
                 securite.appendChild(userDiv);
                 countSecurite++;
                 InfoContinaire.classList.add('hidden');
@@ -360,6 +364,8 @@ function ajouteTroiZone() {
                     <p>${user.nom}</p>
                     <p>${user.role}</p>
                 `;
+                const zone = document.getElementById("serveurs");
+                zone.style.background = "none";
                 serveurs.appendChild(userDiv);
                 countserveurs++;
                 InfoContinaire.classList.add('hidden');
@@ -426,6 +432,8 @@ function ajouteQuatreZone() {
                     <p>${user.nom}</p>
                     <p>${user.role}</p>
                 `;
+                const zone = document.getElementById("Reception");
+                zone.style.background = "none";
                 Reception.appendChild(userDiv);
                 countReception++;
                 InfoContinaire.classList.add('hidden');
@@ -448,7 +456,7 @@ ajouteQuatreZone();
 function ajouteCinqueZone() {
     const limitepersonnel = 3;
     let countpersonnel = 0;
-    const rolesAutorises = ["manager", "reception", "serveur", "nettoyage", "autres"];
+    const rolesAutorises = ["manager", "reception", "salle_serveur", "nettoyage", "autres", "salle_securite"];
     const InfoContinaire = document.getElementById('InfoContinaire');
     let btn_personnel = document.getElementById("btn_personnel");
 
@@ -492,6 +500,8 @@ function ajouteCinqueZone() {
                     <p>${user.nom}</p>
                     <p>${user.role}</p>
                 `;
+                const zone = document.getElementById("personnel");
+                zone.style.background = "none";
                 personnel.appendChild(userDiv);
                 countpersonnel++;
                 InfoContinaire.classList.add('hidden');
@@ -514,7 +524,7 @@ ajouteCinqueZone();
 function ajouteSiseZone() {
     const limitearchives = 1;
     let countarchives = 0;
-    const rolesAutorises = ["manager", "reception", "serveur"];
+    const rolesAutorises = ["manager"];
     const InfoContinaire = document.getElementById('InfoContinaire');
     let btn_archives = document.getElementById("btn_archives");
 
@@ -558,6 +568,8 @@ function ajouteSiseZone() {
                     <p>${user.nom}</p>
                     <p>${user.role}</p>
                 `;
+                const zone = document.getElementById("archives");
+                zone.style.background = "none";
                 archives.appendChild(userDiv);
                 countarchives++;
                 InfoContinaire.classList.add('hidden');
