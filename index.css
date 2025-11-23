@@ -1,9 +1,7 @@
  #sectionImage {
     display:grid;
      grid-template-columns: repeat(200, 1fr);
-     /* 200 colonnes */
      grid-template-rows: repeat(20);
-     /* 10 lignes */
  }
 
  #conference {

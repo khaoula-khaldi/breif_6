@@ -18,9 +18,9 @@ let utilisateur = JSON.parse(localStorage.getItem("utilisateur")) || [];
 
 function validationForm() {
 
-    btn_envoyer.addEventListener('btn_envoyer', (e) => {
+    formulaire.addEventListener('submit', (e) => {
         e.preventDefault();
-
+console.log("khwela");
         const objetInfo = {
             nom: document.getElementById("nome").value.trim(),
             email: document.getElementById("email").value.trim(),
