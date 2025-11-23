@@ -237,18 +237,19 @@ function ajoutePremierZone() {
                     return;
                 }
                 const userDiv = document.createElement("div");
-                userDiv.className = "user p-3 bg-white rounded-xl ";
+                userDiv.className = "user  bg-white rounded-xl w-[5rem] h-[5rem] relative";
                 userDiv.innerHTML = `
-                    <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
-                    <img src="${user.url}" class="w-16 h-16 rounded-full">
-                    <p>${user.nom}</p>
-                    <p>${user.role}</p>
+                    <button class="btn_ferment bg-red-700 w-2 h-6 border-xl rounded text-white absolute ml-18 flex justify-centre items-centre">x</button>
+                    <img src="${user.url}" class="w-10 h-10 rounded-full">
+                    <p class="text-xs truncate">${user.nom}</p>
+                    <p class="text-xs truncate">${user.role}</p>
                 `;
                 
                 const zone = document.getElementById("conference");
                 zone.style.background = "none";
                 conference.appendChild(userDiv);
                 countconference++;
+                
                 InfoContinaire.classList.add('hidden');
 
                 const btnFerment = userDiv.querySelector(".btn_ferment");
@@ -305,13 +306,13 @@ function ajouteDeusZone() {
                     alert("Limite atteinte pour cette zone !");
                     return;
                 }
-                const userDiv = document.createElement("div");
-                userDiv.className = "user p-3 bg-white rounded-xl relative";
+                 const userDiv = document.createElement("div");
+                userDiv.className = "user  bg-white rounded-xl w-[5rem] h-[5rem] relative";
                 userDiv.innerHTML = `
-                    <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
-                    <img src="${user.url}" class="w-16 h-16 rounded-full">
-                    <p>${user.nom}</p>
-                    <p>${user.role}</p>
+                    <button class="btn_ferment bg-red-700 w-2 h-6 border-xl rounded text-white absolute ml-18 flex justify-centre items-centre">x</button>
+                    <img src="${user.url}" class="w-10 h-10 rounded-full">
+                    <p class="text-xs truncate">${user.nom}</p>
+                    <p class="text-xs truncate">${user.role}</p>
                 `;
                 const zone = document.getElementById("securite");
                 zone.style.background = "none";
@@ -374,12 +375,12 @@ function ajouteTroiZone() {
                     return;
                 }
                 const userDiv = document.createElement("div");
-                userDiv.className = "user p-3 bg-white rounded-xl relative";
+                userDiv.className = "user  bg-white rounded-xl w-[5rem] h-[5rem] relative";
                 userDiv.innerHTML = `
-                    <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
-                    <img src="${user.url}" class="w-16 h-16 rounded-full">
-                    <p>${user.nom}</p>
-                    <p>${user.role}</p>
+                    <button class="btn_ferment bg-red-700 w-2 h-6 border-xl rounded text-white absolute ml-18 flex justify-centre items-centre">x</button>
+                    <img src="${user.url}" class="w-10 h-10 rounded-full">
+                    <p class="text-xs truncate">${user.nom}</p>
+                    <p class="text-xs truncate">${user.role}</p>
                 `;
                 const zone = document.getElementById("serveurs");
                 zone.style.background = "none";
@@ -441,13 +442,13 @@ function ajouteQuatreZone() {
                     alert("Limite atteinte pour cette zone !");
                     return;
                 }
-                const userDiv = document.createElement("div");
-                userDiv.className = "user p-3 bg-white rounded-xl relative";
+                 const userDiv = document.createElement("div");
+                userDiv.className = "user  bg-white rounded-xl w-[5rem] h-[5rem] relative";
                 userDiv.innerHTML = `
-                    <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
-                    <img src="${user.url}" class="w-16 h-16 rounded-full">
-                    <p>${user.nom}</p>
-                    <p>${user.role}</p>
+                    <button class="btn_ferment bg-red-700 w-2 h-6 border-xl rounded text-white absolute ml-18 flex justify-centre items-centre">x</button>
+                    <img src="${user.url}" class="w-10 h-10 rounded-full">
+                    <p class="text-xs truncate">${user.nom}</p>
+                    <p class="text-xs truncate">${user.role}</p>
                 `;
                 const zone = document.getElementById("Reception");
                 zone.style.background = "none";
@@ -509,13 +510,13 @@ function ajouteCinqueZone() {
                     alert("Limite atteinte pour cette zone !");
                     return;
                 }
-                const userDiv = document.createElement("div");
-                userDiv.className = "user p-3 bg-white rounded-xl relative";
+                 const userDiv = document.createElement("div");
+                userDiv.className = "user  bg-white rounded-xl w-[5rem] h-[5rem] relative";
                 userDiv.innerHTML = `
-                    <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
-                    <img src="${user.url}" class="w-16 h-16 rounded-full">
-                    <p>${user.nom}</p>
-                    <p>${user.role}</p>
+                    <button class="btn_ferment bg-red-700 w-2 h-6 border-xl rounded text-white absolute ml-18 flex justify-centre items-centre">x</button>
+                    <img src="${user.url}" class="w-10 h-10 rounded-full">
+                    <p class="text-xs truncate">${user.nom}</p>
+                    <p class="text-xs truncate">${user.role}</p>
                 `;
                 const zone = document.getElementById("personnel");
                 zone.style.background = "none";
@@ -578,12 +579,12 @@ function ajouteSiseZone() {
                     return;
                 }
                 const userDiv = document.createElement("div");
-                userDiv.className = "user p-3 bg-white rounded-xl relative";
+                userDiv.className = "user  bg-white rounded-xl w-[5rem] h-[5rem] relative";
                 userDiv.innerHTML = `
-                    <button class="btn_ferment p-2 bg-red-700 w-7 h-9 border rounded-3xl text-white absolute top-1 right-2">X</button>
-                    <img src="${user.url}" class="w-16 h-16 rounded-full">
-                    <p>${user.nom}</p>
-                    <p>${user.role}</p>
+                    <button class="btn_ferment bg-red-700 w-2 h-6 border-xl rounded text-white absolute ml-18 flex justify-centre items-centre">x</button>
+                    <img src="${user.url}" class="w-10 h-10 rounded-full">
+                    <p class="text-xs truncate">${user.nom}</p>
+                    <p class="text-xs truncate">${user.role}</p>
                 `;
                 const zone = document.getElementById("archives");
                 zone.style.background = "none";
