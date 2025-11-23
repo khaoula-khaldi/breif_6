@@ -69,8 +69,7 @@ function validationForm() {
             alert("Remplissez une vraie expérience (au moins 10 caractères) !");
             return;
         }
-        //validation de la formulaire dynamique 
-
+        
         //validation de url
         const validImageUrl = /^https?:\/\/.*\.(jpg|jpeg|png|gif|webp)(\?.*)?$/i;
         if (!validImageUrl.test(objetInfo.url)) {
@@ -87,10 +86,8 @@ function validationForm() {
 };
 
 validationForm();
-afficherUtilisateurs();
 
-
-
+function formulaireDynamique(){
 let btnPlus = document.getElementById("btn_plus");
 btnPlus.addEventListener('click', function () {
 
@@ -100,13 +97,16 @@ btnPlus.addEventListener('click', function () {
     experienceInput.className = "experience-input border border-solid border-black rounded px-5 py-2 my-1";
     experienceInput.placeholder = "Ajouter autre expérience";
     ExperiencesContainer.appendChild(experienceInput);
+    if(experienceInput==="" || experienceInput.length < 10){
+        alert('Remplir experiences !!');
+        return;
+    };
 
     // DATE DEBUT
     const labeldebut = document.createElement("p");
     labeldebut.textContent = 'Date de début :';
     labeldebut.className = 'font-semibold';
     ExperiencesContainer.appendChild(labeldebut);
-
     const dateDuInput = document.createElement("input");
     dateDuInput.type = "date";
     dateDuInput.className = "date-du rounded px-5 py-2 my-1 border";
@@ -117,35 +117,52 @@ btnPlus.addEventListener('click', function () {
     labellimite.textContent = 'Date de fin :';
     labellimite.className = 'font-semibold';
     ExperiencesContainer.appendChild(labellimite);
-
     const dateLiInput = document.createElement("input");
     dateLiInput.type = "date";
     dateLiInput.className = "date-li rounded px-5 py-2 my-1 border";
     ExperiencesContainer.appendChild(dateLiInput);
+       if (dateDuInput.value >= dateLiInput.value) {
+            alert("La date de début doit être avant la date de fin.");
+            return;  
+        }
+
 
 });
-
+}
+formulaireDynamique();
 
 function afficherUtilisateurs() {
     const div = document.getElementById("affichageData");
     const data = localStorage.getItem("utilisateur");
-    let utilisateurData = data ? JSON.parse(data) : [];
-    div.innerHTML = ""; // vider le div
 
+    let utilisateurData;
+    if (data !== null && data !== undefined) {
+        utilisateurData = JSON.parse(data);
+    } else {
+        utilisateurData = [];
+    }
+    div.innerHTML = "";
     if (utilisateurData.length === 0) {
         div.textContent = "Aucun utilisateur trouvé.";
-    } else {
-        utilisateurData.forEach((user, index) => {
+    } 
+    else {
+        for (let i = 0; i < utilisateurData.length; i++) {
+            let user = utilisateurData[i];
             div.innerHTML += `
                 <div class="employe block">
-                  <img src="${user.url}" class="w-16 h-16 rounded-full mb-2">
-                  <p>Nom: ${user.nom}</p>
-                  <p>Role: ${user.role}</p>
+                    <img src="${user.url}" class="md:w-16 md:h-16 rounded-full md:mb-2">
+                    <p>Nom: ${user.nom}</p>
+                    <p>Role: ${user.role}</p>
                 </div>
             `;
-        });
+        }
     }
 }
+
+afficherUtilisateurs();
+
+
+
 function detalDeChaqueUser() {
     let employes = document.querySelectorAll(".employe");
     let toutlesinfo = document.getElementById("toutlesinfo");
@@ -227,6 +244,7 @@ function ajoutePremierZone() {
                     <p>${user.nom}</p>
                     <p>${user.role}</p>
                 `;
+                
                 const zone = document.getElementById("conference");
                 zone.style.background = "none";
                 conference.appendChild(userDiv);
@@ -237,7 +255,6 @@ function ajoutePremierZone() {
                 btnFerment.addEventListener('click', () => {
                     userDiv.remove();
                     countconference--;
-
                 });
             });
         });
