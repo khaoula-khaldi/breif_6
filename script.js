@@ -134,23 +134,16 @@ formulaireDynamique();
 function afficherUtilisateurs() {
     const div = document.getElementById("affichageData");
     const data = localStorage.getItem("utilisateur");
-
-    let utilisateurData;
-    if (data !== null && data !== undefined) {
-        utilisateurData = JSON.parse(data);
-    } else {
-        utilisateurData = [];
-    }
     div.innerHTML = "";
-    if (utilisateurData.length === 0) {
+    if (data.length === 0) {
         div.textContent = "Aucun utilisateur trouvé.";
     } 
     else {
-        for (let i = 0; i < utilisateurData.length; i++) {
-            let user = utilisateurData[i];
+        for (let i = 0; i < data.length; i++) {
+            let user = data[i];
             div.innerHTML += `
                 <div class="employe block">
-                    <img src="${user.url}" class="md:w-16 md:h-16 rounded-full md:mb-2">
+                    <img src="${user.url}" class="md:w-16 md:h-16 sm:w-14 sm:h-14 w-10 h-10 rounded-full md:mb-2">
                     <p>Nom: ${user.nom}</p>
                     <p>Role: ${user.role}</p>
                 </div>
@@ -307,7 +300,7 @@ function ajouteDeusZone() {
                     return;
                 }
                  const userDiv = document.createElement("div");
-                userDiv.className = "user  bg-white rounded-xl w-[5rem] h-[5rem] relative";
+                userDiv.className = "user bg-white rounded-xl w-[5rem] h-[5rem] relative";
                 userDiv.innerHTML = `
                     <button class="btn_ferment bg-red-700 w-2 h-6 border-xl rounded text-white absolute ml-18 flex justify-centre items-centre">x</button>
                     <img src="${user.url}" class="w-10 h-10 rounded-full">
