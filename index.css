@@ -10,12 +10,12 @@
  }
 
  #securite {
-     grid-column: 112 / 160;
+     grid-column: 111 / 162;
      grid-row: 1 / 7;
  }
 
  #serveurs {
-     grid-column: 161 / 200;
+     grid-column: 163 / 200;
      grid-row: 1 / 7;
  }
 
@@ -25,12 +25,12 @@
  }
 
  #personnel {
-     grid-column: 112 / 159;
+     grid-column: 112 / 162;
      grid-row: 14 / 20;
  }
 
  #archives {
-     grid-column: 159 / 200;
+     grid-column: 163 / 200;
      grid-row: 14 / 20;
  }
 /* ---------- Tablet  ---------- */
@@ -66,11 +66,23 @@
         grid-auto-rows: 20px; 
     }
 
-    #conference { grid-column: 1 / 5; grid-row: 1 / 5; }
-    #securite { grid-column: 8 / 11; grid-row: 1 / 5; }
-    #serveurs { grid-column: 11 / 13; grid-row: 1 / 5; }
-    #Reception { grid-column: 1 / 5; grid-row: 5 / 13; }
-    #personnel { grid-column: 8 / 11; grid-row: 9 / 13; }
-    #archives { grid-column: 11 / 13; grid-row: 9 / 13; }
+    #conference {
+         grid-column: 1 / 5; grid-row: 1 / 5; 
+        }
+    #securite {
+         grid-column: 8 / 11; grid-row: 1 / 5; 
+        }
+    #serveurs {
+         grid-column: 11 / 13; grid-row: 1 / 5;
+         }
+    #Reception {
+         grid-column: 1 / 5; grid-row: 5 / 13; 
+    }
+    #personnel {
+         grid-column: 8 / 11; grid-row: 9 / 13;
+         }
+    #archives { 
+        grid-column: 11 / 13; grid-row: 9 / 13;
+     }
 }
 

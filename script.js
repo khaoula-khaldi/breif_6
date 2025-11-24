@@ -627,7 +627,7 @@ function ajouteSiseZone() {
     const InfoContinaire = document.getElementById('InfoContinaire');
     let btn_archives = document.getElementById("btn_archives");
 
-    btn_archives.addEventListener('click', () => {
+   btn_archives.addEventListener('click', (e) => {
         e.preventDefault();
         InfoContinaire.classList.remove('hidden');
         InfoContinaire.innerHTML = "";
@@ -675,7 +675,7 @@ function ajouteSiseZone() {
                 const zone = document.getElementById("archives");
                 zone.style.background = "none";
                 zone6.appendChild(userDiv);
-
+                 e.preventDefault();
                 utilisateurs[i].assign = true;
                 afficherUtilisateurs();
 
@@ -683,13 +683,13 @@ function ajouteSiseZone() {
                 div.remove();
                 InfoContinaire.classList.add('hidden');
 
-                const btnFerment = userDiv.querySelector(".btn_ferment");
+               const btnFerment = userDiv.querySelector(".btn_ferment");
                 btnFerment.addEventListener('click', () => {
                     e.preventDefault();
                     userDiv.remove();
                     utilisateurs[i].assign = false;
                     afficherUtilisateurs();
-                    countarchives--;
+                    countpersonnel--;
 
                 });
             });
