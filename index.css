@@ -2,6 +2,7 @@
     display:grid;
      grid-template-columns: repeat(200, 1fr);
      grid-template-rows: repeat(20);
+     grid-auto-rows: minmax(0, 1fr);
  }
 
  #conference {

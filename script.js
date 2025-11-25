@@ -654,7 +654,7 @@ function ajouteSiseZone() {
         const allEmpDiv = InfoContinaire.querySelectorAll(".empDiv");
         allEmpDiv.forEach((div, i) => {
             const user = utilisateur[i];
-            div.addEventListener('click', () => {
+            div.addEventListener('click', (e) => {
                 e.preventDefault();
                 if (!rolesAutorises.includes(user.role)) {
                     alert("Cet employé n'a pas le droit d'entrer dans cette zone !");
