@@ -5,14 +5,13 @@ let formulaire = document.getElementById('formulaire');
 let btn_envoyer = document.getElementById('btn_envoyer');
 let dateDu = document.getElementById("dateDu");
 let dateLi = document.getElementById("dateLi");
-let utilisateur = JSON.parse(localStorage.getItem("utilisateur")) || [];
 let zone1 = document.getElementById("zone1");
 let zone2 = document.getElementById("zone2");
 let zone3 = document.getElementById("zone3");
 let zone4 = document.getElementById("zone4");
 let zone5 = document.getElementById("zone5");
 let zone6 = document.getElementById("zone6");
-
+let utilisateur = JSON.parse(localStorage.getItem("utilisateur")) || [];
 
 ajouterEmploye.addEventListener('click', (e) => {
     e.preventDefault();
@@ -665,7 +664,7 @@ function ajouteSiseZone() {
                     return;
                 }
                 const userDiv = document.createElement("div");
-                userDiv.className = "user  bg-white rounded-xl w-[5rem] h-[5rem] relative";
+                userDiv.className = "user bg-white rounded-xl w-[5rem] h-[5rem] relative";
                 userDiv.innerHTML = `
                     <button class="btn_ferment bg-red-700 w-2 h-6 border-xl rounded text-white absolute ml-18 flex justify-centre items-centre">x</button>
                     <img src="${user.url}" class="w-10 h-10 rounded-full">
@@ -697,3 +696,4 @@ function ajouteSiseZone() {
     });
 }
 ajouteSiseZone();
+
