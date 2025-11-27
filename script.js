@@ -80,7 +80,7 @@ function validationForm() {
         }
 
         //validation de url
-        const validImageUrl = /^https?:\/\/.*\.(jpg|jpeg|png|gif|webp)(\?.*)?$/i;
+        const validImageUrl =  /https?:\/\//;
         if (!validImageUrl.test(objetInfo.url)) {
             alert("url incorrect !");
             return;
@@ -525,8 +525,11 @@ function ajouteQuatreZone() {
                     utilisateurs[i].assign = false;
                     afficherUtilisateurs();
                     countReception--;
+                  
 
                 });
+                
+                
             });
         });
     });
